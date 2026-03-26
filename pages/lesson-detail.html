@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pixel | تفاصيل الدرس</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Noto Kufi Arabic', sans-serif; }
+        .objective-item { display: flex; align-items: flex-start; gap: 1.2rem; margin-bottom: 1.2rem; padding: 1.2rem; background: #1a1a1a; border-radius: 16px; border: 1px solid #2a2a2a; transition: var(--transition); }
+        .objective-item:hover { transform: translateX(-8px); border-color: var(--secondary); background: #251a3a; }
+        .objective-icon { font-size: 1.8rem; color: var(--secondary); }
+    </style>
+</head>
+<body>
+    <nav class="navbar animate-up">
+        <div class="logo">Pixel<span>.</span></div>
+        <ul class="nav-links">
+            <li><a href="../index.html">الرئيسية</a></li>
+            <li><a href="levels.html">المستويات</a></li>
+            <li><a href="placement-test.html">تحديد المستوى</a></li>
+        </ul>
+        <a href="levels.html" class="btn btn-outline">كل المستويات</a>
+    </nav>
+
+    <header class="hero" style="padding: 6rem 8% 4rem; background: radial-gradient(circle at top left, rgba(124, 58, 237, 0.1), transparent 50%);">
+        <div class="container">
+            <h1 id="lesson-title" class="animate-up">جاري التحميل...</h1>
+            <p id="lesson-subtitle" class="animate-up" style="animation-delay: 0.2s;"></p>
+        </div>
+    </header>
+
+    <main class="container">
+        <div style="display: grid; grid-template-columns: 1fr 400px; gap: 4rem; margin-top: 5rem; flex-wrap: wrap;">
+            <div class="animate-up" style="animation-delay: 0.4s;">
+                <h2 style="color: var(--white); margin-bottom: 2.5rem; border-right: 5px solid var(--secondary); padding-right: 1.5rem;">محتوى الدرس</h2>
+                <div id="lesson-content" style="font-size: 1.2rem; line-height: 2.2; color: var(--text-main);">
+                    <!-- Content loaded via JS -->
+                </div>
+            </div>
+
+            <aside class="animate-up" style="animation-delay: 0.6s;">
+                <div class="card" style="position: sticky; top: 120px; border-top: 5px solid var(--secondary);">
+                    <h3 style="margin-bottom: 2rem; font-size: 1.6rem;">أهداف التعلم</h3>
+                    <div id="objectives-container">
+                        <!-- Objectives loaded via JS -->
+                    </div>
+                    <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #2a2a2a; text-align: center;">
+                        <a href="quiz.html" class="btn" style="width: 100%; justify-content: center;">ابدأ الاختبار التقييمي</a>
+                    </div>
+                </div>
+            </aside>
+        </div>
+    </main>
+
+    <footer style="margin-top: 10rem; padding: 3rem; text-align: center;">
+        <p style="color: var(--text-muted);">&copy; 2026 Pixel Platform - جميع الحقوق محفوظة</p>
+    </footer>
+
+    <script src="../js/lessons-data.js"></script>
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const lessonId = urlParams.get('id') || "1";
+
+        if (lessonsData[lessonId]) {
+            const lesson = lessonsData[lessonId];
+            document.getElementById('lesson-title').innerText = lesson.title;
+            document.getElementById('lesson-subtitle').innerText = lesson.subtitle;
+            document.getElementById('lesson-content').innerHTML = lesson.content;
+            
+            const objectivesHTML = `
+                <div class="objective-item">
+                    <span class="objective-icon">🧠</span>
+                    <div><strong>معرفي:</strong><br>${lesson.objectives.cognitive}</div>
+                </div>
+                <div class="objective-item">
+                    <span class="objective-icon">🛠</span>
+                    <div><strong>مهاري:</strong><br>${lesson.objectives.skill}</div>
+                </div>
+                <div class="objective-item">
+                    <span class="objective-icon">💎</span>
+                    <div><strong>وجداني:</strong><br>${lesson.objectives.emotional}</div>
+                </div>
+            `;
+            document.getElementById('objectives-container').innerHTML = objectivesHTML;
+            document.title = `Pixel | ${lesson.title}`;
+        }
+    </script>
+</body>
+</html>
