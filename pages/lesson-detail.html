@@ -10,66 +10,92 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Noto Kufi Arabic', sans-serif; }
-        .objective-item { display: flex; align-items: flex-start; gap: 1.2rem; margin-bottom: 1.2rem; padding: 1.2rem; background: #1a1a1a; border-radius: 16px; border: 1px solid #2a2a2a; transition: var(--transition); }
-        .objective-item:hover { transform: translateX(-8px); border-color: var(--secondary); background: #251a3a; }
+        .objective-item { display: flex; align-items: flex-start; gap: 1.2rem; margin-bottom: 1.2rem; padding: 1.2rem; background: var(--card-bg); border-radius: 16px; border: 1px solid var(--border-soft); transition: var(--transition-smooth); }
+        .objective-item:hover { transform: translateX(-8px); border-color: var(--secondary); background: var(--secondary-light); }
         .objective-icon { font-size: 1.8rem; color: var(--secondary); }
     </style>
 </head>
 <body>
-    <nav class="navbar animate-up">
-        <div class="logo">Pixel<span>.</span></div>
+    <nav class="navbar reveal">
+        <div class="logo">
+            <div class="logo-dot"></div>
+            Pixel<span>.</span>
+        </div>
         <ul class="nav-links">
             <li><a href="../index.html">الرئيسية</a></li>
-            <li><a href="levels.html">المستويات</a></li>
+            <li><a href="levels.html">المسارات</a></li>
             <li><a href="placement-test.html">تحديد المستوى</a></li>
         </ul>
-        <a href="levels.html" class="btn btn-outline">كل المستويات</a>
+        <a href="levels.html" class="btn-ghost" style="padding: 0.8rem 1.5rem; font-size: 0.9rem;">كل المسارات</a>
     </nav>
 
-    <header class="hero" style="padding: 6rem 8% 4rem; background: radial-gradient(circle at top left, rgba(124, 58, 237, 0.1), transparent 50%);">
+    <header class="hero" style="padding: 6rem 8% 4rem; background: none;">
         <div class="container">
-            <h1 id="lesson-title" class="animate-up">جاري التحميل...</h1>
-            <p id="lesson-subtitle" class="animate-up" style="animation-delay: 0.2s;"></p>
+            <h1 id="lesson-title" class="reveal">جاري التحميل...</h1>
+            <p id="lesson-subtitle" class="reveal" style="animation-delay: 0.2s; font-size: 1.2rem;"></p>
         </div>
     </header>
 
     <main class="container">
         <div style="display: grid; grid-template-columns: 1fr 400px; gap: 4rem; margin-top: 5rem; flex-wrap: wrap;">
-            <div class="animate-up" style="animation-delay: 0.4s;">
-                <h2 style="color: var(--white); margin-bottom: 2.5rem; border-right: 5px solid var(--secondary); padding-right: 1.5rem;">محتوى الدرس</h2>
-                <div id="lesson-content" style="font-size: 1.2rem; line-height: 2.2; color: var(--text-main);">
+            <div class="reveal" style="animation-delay: 0.4s;">
+                <h2 style="color: var(--text-dark); margin-bottom: 2.5rem; border-right: 5px solid var(--secondary); padding-right: 1.5rem;">محتوى الدرس</h2>
+                <div id="lesson-content" style="font-size: 1.1rem; line-height: 2.2; color: var(--text-slate);">
                     <!-- Content loaded via JS -->
+                </div>
+                <div style="margin-top: 4rem; padding-top: 2rem; border-top: 1px solid var(--border-soft);">
+                    <h3 style="color: var(--text-dark); margin-bottom: 1.5rem;">أدوات ومصادر مساعدة</h3>
+                    <p style="color: var(--text-slate);">لتعزيز فهمك، يمكنك استكشاف هذه الأدوات والمصادر الإضافية:</p>
+                    <ul style="list-style: none; margin-top: 1rem;">
+                        <li style="margin-bottom: 0.8rem;"><a href="#" style="color: var(--secondary); text-decoration: none; font-weight: 600;">فيديو شرح مفصل للمفاهيم الأساسية</a></li>
+                        <li style="margin-bottom: 0.8rem;"><a href="#" style="color: var(--secondary); text-decoration: none; font-weight: 600;">ملخص مرئي (Infographic) لقوانين الجشطالت</a></li>
+                        <li style="margin-bottom: 0.8rem;"><a href="#" style="color: var(--secondary); text-decoration: none; font-weight: 600;">تمارين تفاعلية على Figma</a></li>
+                    </ul>
                 </div>
             </div>
 
-            <aside class="animate-up" style="animation-delay: 0.6s;">
-                <div class="card" style="position: sticky; top: 120px; border-top: 5px solid var(--secondary);">
-                    <h3 style="margin-bottom: 2rem; font-size: 1.6rem;">أهداف التعلم</h3>
+            <aside class="reveal" style="animation-delay: 0.6s;">
+                <div class="card" style="position: sticky; top: 120px; border-top: 5px solid var(--secondary); padding: 2.5rem;">
+                    <h3 style="margin-bottom: 2rem; font-size: 1.6rem; color: var(--text-dark);">أهداف التعلم</h3>
                     <div id="objectives-container">
                         <!-- Objectives loaded via JS -->
                     </div>
-                    <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid #2a2a2a; text-align: center;">
-                        <a href="quiz.html" class="btn" style="width: 100%; justify-content: center;">ابدأ الاختبار التقييمي</a>
+                    <div style="margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border-soft); text-align: center;">
+                        <a href="quiz.html" class="btn-main" style="width: 100%; justify-content: center;">ابدأ الاختبار التقييمي</a>
                     </div>
                 </div>
             </aside>
         </div>
     </main>
 
-    <footer style="margin-top: 10rem; padding: 3rem; text-align: center;">
-        <p style="color: var(--text-muted);">&copy; 2026 Pixel Platform - جميع الحقوق محفوظة</p>
+    <footer style="margin-top: 10rem; padding: 6rem 10% 4rem; background: #fff; border-top: 1px solid var(--border-soft); text-align: center;">
+        <div class="container">
+            <div class="logo" style="justify-content: center; margin-bottom: 2rem;">
+                <div class="logo-dot"></div>
+                Pixel<span>.</span>
+            </div>
+            <p style="color: var(--text-slate); max-width: 600px; margin: 0 auto 3rem;">منصة Pixel تلتزم بأعلى معايير جودة المحتوى التعليمي الرقمي لضمان تجربة تعلم فريدة ومثمرة.</p>
+            <div style="display: flex; gap: 3rem; justify-content: center; margin-bottom: 3rem; font-weight: 700;">
+                <a href="levels.html" style="color: var(--text-dark); text-decoration: none;">المسارات</a>
+                <a href="placement-test.html" style="color: var(--text-dark); text-decoration: none;">تحديد المستوى</a>
+                <a href="#" style="color: var(--text-dark); text-decoration: none;">عن المنصة</a>
+            </div>
+            <div style="border-top: 1px solid var(--border-soft); padding-top: 3rem; color: var(--text-slate); font-size: 0.9rem;">
+                &copy; 2026 Pixel Platform - التميز في تعليم التصميم
+            </div>
+        </div>
     </footer>
 
     <script src="../js/lessons-data.js"></script>
     <script>
         const urlParams = new URLSearchParams(window.location.search);
-        const lessonId = urlParams.get('id') || "1";
+        const lessonId = urlParams.get("id") || "1";
 
         if (lessonsData[lessonId]) {
             const lesson = lessonsData[lessonId];
-            document.getElementById('lesson-title').innerText = lesson.title;
-            document.getElementById('lesson-subtitle').innerText = lesson.subtitle;
-            document.getElementById('lesson-content').innerHTML = lesson.content;
+            document.getElementById("lesson-title").innerText = lesson.title;
+            document.getElementById("lesson-subtitle").innerText = lesson.subtitle;
+            document.getElementById("lesson-content").innerHTML = lesson.content;
             
             const objectivesHTML = `
                 <div class="objective-item">
@@ -85,7 +111,7 @@
                     <div><strong>وجداني:</strong><br>${lesson.objectives.emotional}</div>
                 </div>
             `;
-            document.getElementById('objectives-container').innerHTML = objectivesHTML;
+            document.getElementById("objectives-container").innerHTML = objectivesHTML;
             document.title = `Pixel | ${lesson.title}`;
         }
     </script>

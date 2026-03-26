@@ -10,66 +10,70 @@
     <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Noto Kufi Arabic', sans-serif; }
-        .progress-container { width: 100%; height: 8px; background: #1f1f1f; border-radius: 10px; margin-bottom: 3rem; overflow: hidden; }
-        .progress-bar { height: 100%; background: var(--secondary); width: 0%; transition: width 0.5s ease; box-shadow: 0 0 15px var(--secondary); }
-        .quiz-option { cursor: pointer; border: 2px solid #2a2a2a; border-radius: 16px; padding: 1.2rem; margin-bottom: 1rem; transition: var(--transition); display: flex; align-items: center; gap: 1rem; background: #1a1a1a; }
-        .quiz-option:hover { border-color: var(--secondary); background: #251a3a; }
-        .quiz-option.selected { border-color: var(--secondary); background: var(--secondary); color: white; }
-        .quiz-option.correct { border-color: #10b981; background: #064e3b; color: white; }
-        .quiz-option.wrong { border-color: #ef4444; background: #7f1d1d; color: white; }
+        .progress-bar { height: 12px; background: var(--border-soft); border-radius: 100px; margin-bottom: 3rem; overflow: hidden; }
+        .progress-fill { height: 100%; background: var(--secondary); width: 0%; transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1); box-shadow: 0 0 20px var(--secondary-light); }
+        .option-card { padding: 1.5rem 2rem; border-radius: 24px; border: 2px solid var(--border-soft); margin-bottom: 1.2rem; cursor: pointer; transition: var(--transition-smooth); display: flex; align-items: center; gap: 1.5rem; background: white; font-weight: 700; font-size: 1.1rem; color: var(--text-slate); }
+        .option-card:hover { border-color: var(--secondary); background: var(--secondary-light); color: var(--secondary); transform: translateX(-10px); }
+        .option-card.selected { border-color: var(--secondary); background: var(--secondary); color: white; box-shadow: 0 10px 30px rgba(124, 58, 237, 0.3); }
+        .option-index { width: 32px; height: 32px; background: var(--border-soft); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; transition: var(--transition-smooth); }
+        .option-card.selected .option-index { background: rgba(255,255,255,0.2); color: white; }
+        .option-card.correct { border-color: #10b981; background: #ecfdf5; color: #065f46; }
+        .option-card.wrong { border-color: #ef4444; background: #fef2f2; color: #991b1b; }
     </style>
 </head>
 <body>
-    <nav class="navbar animate-up">
-        <div class="logo">Pixel<span>.</span></div>
+    <nav class="navbar reveal">
+        <div class="logo">
+            <div class="logo-dot"></div>
+            Pixel<span>.</span>
+        </div>
         <ul class="nav-links">
             <li><a href="../index.html">الرئيسية</a></li>
-            <li><a href="levels.html">المستويات</a></li>
-            <li><a href="quiz.html" class="active">الاختبارات</a></li>
+            <li><a href="levels.html">المسارات</a></li>
+            <li><a href="placement-test.html">تحديد المستوى</a></li>
         </ul>
-        <a href="../index.html" class="btn btn-outline">إنهاء</a>
+        <a href="../index.html" class="btn-ghost" style="padding: 0.8rem 1.5rem; font-size: 0.9rem;">العودة للرئيسية</a>
     </nav>
 
-    <header class="hero" style="padding: 4rem 8% 2rem;">
+    <header class="hero" style="padding: 6rem 8% 4rem; background: none;">
         <div class="container">
-            <h1 class="animate-up">الاختبار <span style="color: var(--secondary);">التقييمي</span></h1>
-            <p class="animate-up" style="animation-delay: 0.2s;">قياس مدى استيعابك للمهارات والمعارف المكتسبة في هذا الدرس.</p>
+            <h1 class="reveal">الاختبار <span style="color: var(--secondary);">التقييمي</span></h1>
+            <p class="reveal" style="animation-delay: 0.2s; font-size: 1.2rem;">اختبر معلوماتك بعد الانتهاء من الدرس لتقييم مدى استيعابك للمفاهيم.</p>
         </div>
     </header>
 
-    <main class="container">
-        <div class="quiz-container animate-up" style="animation-delay: 0.4s;">
-            <div class="progress-container">
-                <div id="progress" class="progress-bar"></div>
+    <main class="container" style="max-width: 900px; margin-top: 6rem; padding-bottom: 10rem;">
+        <div class="content-wrapper">
+            <div class="progress-bar">
+                <div id="progress" class="progress-fill"></div>
             </div>
-            
+
             <div id="quiz-content">
-                <h2 id="question-text" style="margin-bottom: 2.5rem; font-size: 1.8rem; color: var(--white);">جاري تحميل الأسئلة...</h2>
+                <div id="question-header" style="margin-bottom: 3rem;">
+                    <span id="question-counter" style="color: var(--secondary); font-weight: 900; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px;">السؤال 1 من 5</span>
+                    <h2 id="question-text" style="margin-top: 1rem; font-size: 2.2rem; font-weight: 900; line-height: 1.3;">جاري التحميل...</h2>
+                </div>
+                
                 <div id="options-container">
                     <!-- Options injected via JS -->
                 </div>
+
+                <div style="margin-top: 4rem; display: flex; justify-content: flex-end;">
+                    <button id="next-btn" class="btn-main" style="display: none;">السؤال التالي ➔</button>
+                </div>
             </div>
 
-            <div id="quiz-footer" style="margin-top: 4rem; display: flex; justify-content: space-between; align-items: center;">
-                <span id="question-counter" style="color: var(--text-muted); font-weight: 600;">السؤال 1 من 5</span>
-                <button id="next-btn" class="btn" style="display: none;">السؤال التالي</button>
-            </div>
-
-            <div id="result-screen" style="display: none; text-align: center; padding: 2rem 0;">
-                <div id="result-icon" style="font-size: 6rem; margin-bottom: 2rem;">🏆</div>
-                <h2 id="result-title" style="font-size: 2.5rem; margin-bottom: 1.5rem;">نتيجة مذهلة!</h2>
-                <p id="result-score" style="font-size: 1.8rem; color: var(--secondary); margin-bottom: 3rem;"></p>
-                <div style="display: flex; gap: 1.5rem; justify-content: center;">
-                    <button onclick="location.reload()" class="btn">إعادة الاختبار</button>
-                    <a href="levels.html" class="btn btn-outline">العودة للمستويات</a>
+            <div id="result-screen" style="display: none; text-align: center;">
+                <div id="result-icon" style="font-size: 5rem; margin-bottom: 2rem;">🏆</div>
+                <h2 id="result-title" style="font-size: 2.8rem; font-weight: 900; margin-bottom: 1.5rem;">نتيجة الاختبار</h2>
+                <p id="result-score" style="font-size: 1.4rem; color: var(--text-slate); margin-bottom: 3.5rem; max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.8;"></p>
+                <div style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
+                    <button onclick="location.reload()" class="btn-main">إعادة الاختبار</button>
+                    <a href="levels.html" class="btn-ghost">العودة للمسارات</a>
                 </div>
             </div>
         </div>
     </main>
-
-    <footer style="margin-top: 10rem; padding: 3rem; text-align: center;">
-        <p style="color: var(--text-muted);">&copy; 2026 Pixel Platform - جميع الحقوق محفوظة</p>
-    </footer>
 
     <script>
         const questions = [
@@ -96,8 +100,8 @@
             
             q.options.forEach((opt, idx) => {
                 const div = document.createElement('div');
-                div.className = 'quiz-option';
-                div.innerHTML = `<span>${String.fromCharCode(65 + idx)}</span> <strong>${opt}</strong>`;
+                div.className = 'option-card';
+                div.innerHTML = `<div class="option-index">${String.fromCharCode(65 + idx)}</div> <div>${opt}</div>`;
                 div.onclick = () => selectOption(idx, div);
                 container.appendChild(div);
             });
@@ -108,7 +112,7 @@
             if (answered) return;
             answered = true;
             const q = questions[currentIdx];
-            const options = document.querySelectorAll('.quiz-option');
+            const options = document.querySelectorAll('.option-card');
             
             if (idx === q.correct) {
                 element.classList.add('correct');
