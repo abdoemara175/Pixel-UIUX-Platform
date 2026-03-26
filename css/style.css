@@ -134,7 +134,7 @@ body {
 
 /* ===== NAVIGATION ===== */
 .navbar {
-    padding: 1.5rem 10%;
+    padding: 1.5rem 6%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -206,7 +206,7 @@ body {
 
 /* ===== HERO SECTION ===== */
 .hero {
-    padding: 10rem 10% 6rem;
+    padding: 10rem 8% 6rem;
     text-align: center;
     position: relative;
     overflow: hidden;
@@ -283,8 +283,9 @@ body {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-auto-rows: minmax(200px, auto);
-    gap: 2rem;
-    margin: 5rem 0;
+    gap: 2.5rem;
+    margin: 6rem 0;
+    padding: 0 2%;
 }
 
 .bento-item {
@@ -426,10 +427,10 @@ body {
 
 /* ===== CONTENT WRAPPER ===== */
 .content-wrapper {
-    max-width: 900px;
+    max-width: 850px;
     margin: 4rem auto;
     background: white;
-    padding: 4rem;
+    padding: 4rem 5%;
     border-radius: var(--radius-lg);
     border: 1px solid var(--border-soft);
     box-shadow: var(--shadow-purple);
@@ -512,7 +513,7 @@ body {
 
 /* ===== FOOTER ===== */
 footer {
-    padding: 6rem 10% 4rem;
+    padding: 6rem 8% 4rem;
     background: #fff;
     border-top: 1px solid var(--border-soft);
     text-align: center;
@@ -528,7 +529,7 @@ footer .logo {
 .container {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0 10%;
+    padding: 0 8%;
 }
 
 /* ===== RESPONSIVE ===== */
