@@ -9,21 +9,15 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
-        body { font-family: 'Noto Kufi Arabic', sans-serif; }
         .progress-bar { height: 12px; background: var(--border-soft); border-radius: 100px; margin-bottom: 3rem; overflow: hidden; }
-        .progress-fill { height: 100%; background: var(--secondary); width: 0%; transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1); box-shadow: 0 0 20px var(--secondary-light); }
-        .option-card { padding: 1.5rem 2rem; border-radius: 24px; border: 2px solid var(--border-soft); margin-bottom: 1.2rem; cursor: pointer; transition: var(--transition-smooth); display: flex; align-items: center; gap: 1.5rem; background: white; font-weight: 700; font-size: 1.1rem; color: var(--text-slate); }
-        .option-card:hover { border-color: var(--secondary); background: var(--secondary-light); color: var(--secondary); transform: translateX(-10px); }
-        .option-card.selected { border-color: var(--secondary); background: var(--secondary); color: white; box-shadow: 0 10px 30px rgba(124, 58, 237, 0.3); }
-        .option-index { width: 32px; height: 32px; background: var(--border-soft); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; transition: var(--transition-smooth); }
-        .option-card.selected .option-index { background: rgba(255,255,255,0.2); color: white; }
+        .progress-fill { height: 100%; background: linear-gradient(90deg, var(--secondary), var(--secondary-dark)); width: 0%; transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1); box-shadow: 0 0 20px var(--secondary-light); }
     </style>
 </head>
 <body>
-    <nav class="navbar reveal">
+    <nav class="navbar">
         <div class="logo">
             <div class="logo-dot"></div>
-            Pixel<span>.</span>
+            <span>Pixel</span><span style="color: var(--secondary);">.</span>
         </div>
         <ul class="nav-links">
             <li><a href="../index.html">الرئيسية</a></li>
@@ -33,14 +27,14 @@
         <a href="../index.html" class="btn-ghost" style="padding: 0.8rem 1.5rem; font-size: 0.9rem;">إلغاء</a>
     </nav>
 
-    <main class="container reveal" style="max-width: 900px; margin-top: 6rem; padding-bottom: 10rem;">
+    <main class="container" style="max-width: 900px; margin-top: 6rem; padding-bottom: 10rem;">
         <div class="content-wrapper">
             <div class="progress-bar">
                 <div id="progress" class="progress-fill"></div>
             </div>
 
             <div id="quiz-content">
-                <div id="question-header" style="margin-bottom: 3rem;">
+                <div id="question-header" style="margin-bottom: 3rem; animation: fadeInUp 0.8s ease-out;">
                     <span id="question-counter" style="color: var(--secondary); font-weight: 900; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px;">السؤال 1 من 4</span>
                     <h2 id="question-text" style="margin-top: 1rem; font-size: 2.2rem; font-weight: 900; line-height: 1.3;">جاري التحميل...</h2>
                 </div>
@@ -54,8 +48,8 @@
                 </div>
             </div>
 
-            <div id="result-screen" style="display: none; text-align: center;">
-                <div style="font-size: 5rem; margin-bottom: 2rem;">🌟</div>
+            <div id="result-screen" style="display: none; text-align: center; animation: fadeInUp 0.8s ease-out;">
+                <div style="font-size: 5rem; margin-bottom: 2rem; animation: scaleIn 0.6s ease-out;">🌟</div>
                 <h2 id="result-title" style="font-size: 2.8rem; font-weight: 900; margin-bottom: 1.5rem;">تحليل مستواك</h2>
                 <p id="result-desc" style="font-size: 1.4rem; color: var(--text-slate); margin-bottom: 3.5rem; max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.8;"></p>
                 <div style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
@@ -65,6 +59,24 @@
             </div>
         </div>
     </main>
+
+    <footer>
+        <div class="container">
+            <div class="logo" style="justify-content: center; margin-bottom: 2rem;">
+                <div class="logo-dot"></div>
+                <span>Pixel</span><span style="color: var(--secondary);">.</span>
+            </div>
+            <p style="color: var(--text-slate); max-width: 600px; margin: 0 auto 3rem;">منصة Pixel تلتزم بأعلى معايير جودة المحتوى التعليمي الرقمي لضمان تجربة تعلم فريدة ومثمرة.</p>
+            <div style="display: flex; gap: 3rem; justify-content: center; margin-bottom: 3rem; font-weight: 700;">
+                <a href="levels.html" style="color: var(--text-dark); text-decoration: none;">المسارات</a>
+                <a href="placement-test.html" style="color: var(--text-dark); text-decoration: none;">تحديد المستوى</a>
+                <a href="#" style="color: var(--text-dark); text-decoration: none;">عن المنصة</a>
+            </div>
+            <div style="border-top: 1px solid var(--border-soft); padding-top: 3rem; color: var(--text-slate); font-size: 0.9rem;">
+                &copy; 2026 Pixel Platform - التميز في تعليم التصميم
+            </div>
+        </div>
+    </footer>
 
     <script>
         const questions = [
