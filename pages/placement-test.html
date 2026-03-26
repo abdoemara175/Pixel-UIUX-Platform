@@ -1,153 +1,178 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pixel | اختبار تحديد المستوى</title>
+    <title>اختبار تحديد المستوى - Pixel</title>
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;900&display=swap" rel="stylesheet">
-    <style>
-        .progress-bar { height: 12px; background: var(--border-soft); border-radius: 100px; margin-bottom: 3rem; overflow: hidden; }
-        .progress-fill { height: 100%; background: linear-gradient(90deg, var(--secondary), var(--secondary-dark)); width: 0%; transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1); box-shadow: 0 0 20px var(--secondary-light); }
-    </style>
 </head>
 <body>
+    <!-- Navigation -->
     <nav class="navbar">
-        <div class="logo">
-            <div class="logo-dot"></div>
-            <span>Pixel</span><span style="color: var(--secondary);">.</span>
-        </div>
+        <a href="../index.html" class="logo">
+            <span>Pixel</span><span>.</span>
+        </a>
         <ul class="nav-links">
-            <li><a href="../index.html">الرئيسية</a></li>
-            <li><a href="levels.html">المسارات</a></li>
-            <li><a href="placement-test.html" class="active">تحديد المستوى</a></li>
+            <li><a href="../index.html#levels">المسارات</a></li>
+            <li><a href="../index.html#features">المميزات</a></li>
         </ul>
-        <a href="../index.html" class="btn-ghost" style="padding: 0.8rem 1.5rem; font-size: 0.9rem;">إلغاء</a>
     </nav>
 
-    <main style="display: flex; justify-content: center; align-items: flex-start; min-height: 100vh; padding: 4rem 2rem;">
-        <div class="content-wrapper">
+    <!-- Quiz Container -->
+    <div class="container">
+        <div class="quiz-container">
             <div class="progress-bar">
-                <div id="progress" class="progress-fill"></div>
+                <div class="progress-fill" id="progress"></div>
             </div>
 
-            <div id="quiz-content">
-                <div id="question-header" style="margin-bottom: 3rem; animation: fadeInUp 0.8s ease-out;">
-                    <span id="question-counter" style="color: var(--secondary); font-weight: 900; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px;">السؤال 1 من 4</span>
-                    <h2 id="question-text" style="margin-top: 1rem; font-size: 2.2rem; font-weight: 900; line-height: 1.3;">جاري التحميل...</h2>
-                </div>
-                
-                <div id="options-container">
-                    <!-- Options injected via JS -->
-                </div>
-
-                <div style="margin-top: 4rem; display: flex; justify-content: flex-end;">
-                    <button id="next-btn" class="btn-main" style="display: none;">السؤال التالي ➔</button>
-                </div>
+            <div class="question" id="question-container">
+                <h3 id="question-text"></h3>
+                <div class="options" id="options-container"></div>
             </div>
 
-            <div id="result-screen" style="display: none; text-align: center; animation: fadeInUp 0.8s ease-out;">
-                <div style="font-size: 5rem; margin-bottom: 2rem; animation: scaleIn 0.6s ease-out;">🌟</div>
-                <h2 id="result-title" style="font-size: 2.8rem; font-weight: 900; margin-bottom: 1.5rem;">تحليل مستواك</h2>
-                <p id="result-desc" style="font-size: 1.4rem; color: var(--text-slate); margin-bottom: 3.5rem; max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.8;"></p>
-                <div style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
-                    <a href="levels.html" class="btn-main">استكشف مسارك التعليمي</a>
-                    <a href="../index.html" class="btn-ghost">العودة للرئيسية</a>
-                </div>
+            <div style="text-align: center; margin-top: 2rem;">
+                <button class="btn btn-primary" id="next-btn" onclick="nextQuestion()" style="display: none;">السؤال التالي</button>
+                <button class="btn btn-primary" id="submit-btn" onclick="submitTest()" style="display: none;">إنهاء الاختبار</button>
             </div>
         </div>
-    </main>
+    </div>
 
+    <!-- Footer -->
     <footer>
         <div class="container">
-            <div class="logo" style="justify-content: center; margin-bottom: 2rem;">
-                <div class="logo-dot"></div>
-                <span>Pixel</span><span style="color: var(--secondary);">.</span>
-            </div>
-            <p style="color: var(--text-slate); max-width: 600px; margin: 0 auto 3rem;">منصة Pixel تلتزم بأعلى معايير جودة المحتوى التعليمي الرقمي لضمان تجربة تعلم فريدة ومثمرة.</p>
-            <div style="display: flex; gap: 3rem; justify-content: center; margin-bottom: 3rem; font-weight: 700;">
-                <a href="levels.html" style="color: var(--text-dark); text-decoration: none;">المسارات</a>
-                <a href="placement-test.html" style="color: var(--text-dark); text-decoration: none;">تحديد المستوى</a>
-                <a href="#" style="color: var(--text-dark); text-decoration: none;">عن المنصة</a>
-            </div>
-            <div style="border-top: 1px solid var(--border-soft); padding-top: 3rem; color: var(--text-slate); font-size: 0.9rem;">
-                &copy; 2026 Pixel Platform - التميز في تعليم التصميم
-            </div>
+            <p><strong>Pixel Platform</strong> - منصة تعليمية متخصصة في تصميم UI/UX</p>
         </div>
     </footer>
 
     <script>
         const questions = [
-            { q: "ما هو مفهومك عن تجربة المستخدم (UX)؟", options: ["مجرد ألوان وأشكال جذابة", "عملية تصميم تهدف لتسهيل حياة المستخدم وحل مشاكله", "برنامج يستخدم لرسم المواقع", "لا أعرف شيئاً عنها"] },
-            { q: "هل سبق لك استخدام أدوات تصميم مثل Figma أو Adobe XD؟", options: ["نعم، بشكل محترف", "نعم، بشكل بسيط", "سمعت عنها فقط", "لا أبداً"] },
-            { q: "ما هي أهمية الخطوط والألوان في واجهة المستخدم (UI)؟", options: ["للتزيين فقط", "لجذب الانتباه دون هدف", "لتحسين الوضوح، التسلسل البصري، وتوجيه المستخدم", "لا أهمية لها"] },
-            { q: "هل تعرف الفرق بين الـ Wireframe والـ Prototype؟", options: ["نعم، الفرق واضح تماماً لي", "أعرف القليل", "أعتقد أنهما نفس الشيء", "لا أعرف"] }
+            {
+                question: "ما هو الفرق بين UI و UX؟",
+                options: [
+                    "UI هي الواجهة البصرية و UX هي تجربة المستخدم",
+                    "لا يوجد فرق بينهما",
+                    "UI أهم من UX",
+                    "UX فقط للتطبيقات"
+                ],
+                correct: 0
+            },
+            {
+                question: "ما هي أهمية الألوان في التصميم؟",
+                options: [
+                    "لا أهمية لها",
+                    "تؤثر على المزاج والتفاعل",
+                    "فقط للجمال",
+                    "لا تؤثر على التجربة"
+                ],
+                correct: 1
+            },
+            {
+                question: "ما هو Wireframing؟",
+                options: [
+                    "رسم توضيحي بسيط لتخطيط الواجهة",
+                    "تصميم نهائي ملون",
+                    "برنامج تصميم",
+                    "نوع من الخطوط"
+                ],
+                correct: 0
+            },
+            {
+                question: "ما هي أهمية الـ Whitespace؟",
+                options: [
+                    "لا أهمية له",
+                    "يحسن القراءة والتركيز",
+                    "يهدر المساحة",
+                    "فقط للمواقع الفارغة"
+                ],
+                correct: 1
+            },
+            {
+                question: "كم عدد الألوان الأساسية الموصى بها في التصميم؟",
+                options: [
+                    "لا حد معين",
+                    "3-5 ألوان",
+                    "أكثر من 10",
+                    "لون واحد فقط"
+                ],
+                correct: 1
+            }
         ];
 
-        let currentIdx = 0;
-        let selections = [];
+        let currentQuestion = 0;
+        let score = 0;
+        let selectedAnswers = [];
 
         function loadQuestion() {
-            const q = questions[currentIdx];
-            document.getElementById('question-text').innerText = q.q;
-            document.getElementById('question-counter').innerText = `السؤال ${currentIdx + 1} من ${questions.length}`;
-            document.getElementById('progress').style.width = `${((currentIdx) / questions.length) * 100}%`;
+            const question = questions[currentQuestion];
+            document.getElementById("question-text").textContent = question.question;
             
-            const container = document.getElementById('options-container');
-            container.innerHTML = '';
+            const optionsContainer = document.getElementById("options-container");
+            optionsContainer.innerHTML = "";
             
-            q.options.forEach((opt, idx) => {
-                const div = document.createElement('div');
-                div.className = 'option-card';
-                div.innerHTML = `<div class="option-index">${String.fromCharCode(65 + idx)}</div> <div>${opt}</div>`;
-                div.onclick = () => selectOption(idx, div);
-                container.appendChild(div);
+            question.options.forEach((option, index) => {
+                const optionDiv = document.createElement("div");
+                optionDiv.className = "option";
+                optionDiv.textContent = option;
+                optionDiv.onclick = () => selectOption(index, optionDiv);
+                optionsContainer.appendChild(optionDiv);
             });
-            document.getElementById('next-btn').style.display = 'none';
+
+            updateProgress();
+            updateButtons();
         }
 
-        function selectOption(idx, element) {
-            const options = document.querySelectorAll('.option-card');
-            options.forEach(opt => opt.classList.remove('selected'));
-            element.classList.add('selected');
-            selections[currentIdx] = idx;
-            document.getElementById('next-btn').style.display = 'inline-flex';
-            if (currentIdx === questions.length - 1) {
-                document.getElementById('next-btn').innerText = 'عرض النتيجة النهائية';
+        function selectOption(index, element) {
+            document.querySelectorAll(".option").forEach(opt => opt.classList.remove("selected"));
+            element.classList.add("selected");
+            selectedAnswers[currentQuestion] = index;
+        }
+
+        function updateProgress() {
+            const progress = ((currentQuestion + 1) / questions.length) * 100;
+            document.getElementById("progress").style.width = progress + "%";
+        }
+
+        function updateButtons() {
+            const nextBtn = document.getElementById("next-btn");
+            const submitBtn = document.getElementById("submit-btn");
+            
+            if (currentQuestion < questions.length - 1) {
+                nextBtn.style.display = "inline-block";
+                submitBtn.style.display = "none";
+            } else {
+                nextBtn.style.display = "none";
+                submitBtn.style.display = "inline-block";
             }
         }
 
-        document.getElementById('next-btn').onclick = () => {
-            currentIdx++;
-            if (currentIdx < questions.length) {
+        function nextQuestion() {
+            if (selectedAnswers[currentQuestion] !== undefined) {
+                currentQuestion++;
                 loadQuestion();
             } else {
-                showResult();
+                alert("يرجى اختيار إجابة");
             }
-        };
+        }
 
-        function showResult() {
-            document.getElementById('progress').style.width = '100%';
-            document.getElementById('quiz-content').style.display = 'none';
-            document.getElementById('result-screen').style.display = 'block';
-            
-            const firstChoice = selections[0];
-            const secondChoice = selections[1];
-            let level = "";
-            let recommendation = "";
-
-            if (firstChoice === 1 && secondChoice <= 1) {
-                level = "متوسط / متقدم";
-                recommendation = "أنت تمتلك مهارات واعدة! نوصيك بالانطلاق فوراً في مسارات التصميم التفاعلي المتقدمة لتعزيز قدراتك العملية.";
-            } else {
-                level = "مبتدئ";
-                recommendation = "بداية رائعة! نوصيك بالبدء بمسار 'أساسيات UI/UX' لبناء قاعدة معرفية ومهارية صلبة ومستدامة.";
+        function submitTest() {
+            if (selectedAnswers[currentQuestion] === undefined) {
+                alert("يرجى اختيار إجابة");
+                return;
             }
 
-            document.getElementById('result-title').innerText = `مستواك المقترح: ${level}`;
-            document.getElementById('result-desc').innerText = recommendation;
+            score = 0;
+            questions.forEach((question, index) => {
+                if (selectedAnswers[index] === question.correct) {
+                    score++;
+                }
+            });
+
+            let level = "مبتدئ";
+            if (score >= 4) level = "متقدم";
+            else if (score >= 3) level = "متوسط";
+
+            alert(`نتيجتك: ${score}/${questions.length}\nمستواك: ${level}`);
+            window.location.href = `levels.html?level=${level.toLowerCase()}`;
         }
 
         loadQuestion();

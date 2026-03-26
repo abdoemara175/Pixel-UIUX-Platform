@@ -1,73 +1,54 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pixel | مستويات التعلم</title>
+    <title>المسارات التعليمية - Pixel</title>
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;900&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Noto Kufi Arabic', sans-serif; }
-        .level-badge { display: inline-block; padding: 0.3rem 1rem; border-radius: 30px; font-size: 0.85rem; font-weight: 800; margin-bottom: 1rem; text-transform: uppercase; }
-        .badge-beginner { background: #1e1b4b; color: #818cf8; border: 1px solid #312e81; }
-        .badge-intermediate { background: #2e1065; color: #a78bfa; border: 1px solid #4c1d95; }
-        .badge-advanced { background: #4c1d95; color: #ddd6fe; border: 1px solid #6d28d9; }
-    </style>
 </head>
 <body>
-    <nav class="navbar animate-up">
-        <div class="logo">Pixel<span>.</span></div>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="../index.html" class="logo">
+            <span>Pixel</span><span>.</span>
+        </a>
         <ul class="nav-links">
-            <li><a href="../index.html">الرئيسية</a></li>
-            <li><a href="levels.html" class="active">المستويات</a></li>
+            <li><a href="../index.html#levels">المسارات</a></li>
             <li><a href="placement-test.html">تحديد المستوى</a></li>
         </ul>
-        <a href="../index.html" class="btn btn-outline">رجوع</a>
     </nav>
 
-    <header class="hero" style="padding: 6rem 8% 4rem;">
+    <!-- Content -->
+    <div class="container" style="padding: 3rem 5%;">
+        <h1 style="margin-bottom: 2rem;">المسارات التعليمية</h1>
+        
+        <div class="levels-grid">
+            <div class="level-card">
+                <div class="level-icon">🌱</div>
+                <h3>مستوى المبتدئين</h3>
+                <p>تعلم أساسيات تصميم الواجهات والمفاهيم الأولية</p>
+                <a href="lesson-detail.html?level=beginner&lesson=1" class="btn btn-primary">ابدأ التعلم</a>
+            </div>
+            <div class="level-card">
+                <div class="level-icon">📈</div>
+                <h3>مستوى المتوسط</h3>
+                <p>طور مهاراتك في التصميم والتقنيات المتقدمة</p>
+                <a href="lesson-detail.html?level=intermediate&lesson=1" class="btn btn-primary">ابدأ التعلم</a>
+            </div>
+            <div class="level-card">
+                <div class="level-icon">⭐</div>
+                <h3>مستوى متقدم</h3>
+                <p>أتقن مهارات التصميم والاستراتيجيات المتطورة</p>
+                <a href="lesson-detail.html?level=advanced&lesson=1" class="btn btn-primary">ابدأ التعلم</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
         <div class="container">
-            <h1 class="animate-up">مسارات <span style="color: var(--secondary);">التعلم الذكي</span></h1>
-            <p class="animate-up" style="animation-delay: 0.2s;">اختر مستواك وابدأ رحلة الاحتراف في تصميم واجهة وتجربة المستخدم.</p>
+            <p><strong>Pixel Platform</strong> - منصة تعليمية متخصصة في تصميم UI/UX</p>
         </div>
-    </header>
-
-    <main class="container">
-        <div class="grid animate-up" style="animation-delay: 0.4s;">
-            <div class="card">
-                <span class="level-badge badge-beginner">مبتدئ</span>
-                <h3>أساسيات تجربة المستخدم (UX)</h3>
-                <p>تعلم سيكولوجية المستخدم، بناء الشخصيات، ورحلة المستخدم من الصفر.</p>
-                <div style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid #1f1f1f; display: flex; justify-content: space-between; align-items: center;">
-                    <span style="font-size: 0.9rem; color: var(--text-muted);">⏱ 3 ساعات</span>
-                    <a href="lesson-detail.html?id=1" class="btn" style="padding: 0.6rem 1.2rem; font-size: 0.9rem;">عرض الدرس</a>
-                </div>
-            </div>
-            <div class="card">
-                <span class="level-badge badge-beginner">مبتدئ</span>
-                <h3>أساسيات واجهة المستخدم (UI)</h3>
-                <p>إتقان نظريات الألوان، الخطوط، والتسلسل الهرمي البصري لخلق واجهات جذابة.</p>
-                <div style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid #1f1f1f; display: flex; justify-content: space-between; align-items: center;">
-                    <span style="font-size: 0.9rem; color: var(--text-muted);">⏱ 4 ساعات</span>
-                    <a href="lesson-detail.html?id=2" class="btn" style="padding: 0.6rem 1.2rem; font-size: 0.9rem;">عرض الدرس</a>
-                </div>
-            </div>
-            <div class="card">
-                <span class="level-badge badge-intermediate">متوسط</span>
-                <h3>تصميم النماذج التفاعلية (Prototyping)</h3>
-                <p>تحويل التصاميم الثابتة إلى نماذج تفاعلية حية باستخدام Figma.</p>
-                <div style="margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid #1f1f1f; display: flex; justify-content: space-between; align-items: center;">
-                    <span style="font-size: 0.9rem; color: var(--text-muted);">⏱ 5 ساعات</span>
-                    <button class="btn" style="padding: 0.6rem 1.2rem; font-size: 0.9rem; opacity: 0.5; cursor: not-allowed;">قريباً</button>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <footer style="margin-top: 10rem; padding: 3rem; text-align: center;">
-        <p style="color: var(--text-muted);">&copy; 2026 Pixel Platform - جميع الحقوق محفوظة</p>
     </footer>
 </body>
 </html>

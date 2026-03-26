@@ -1,153 +1,175 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pixel | الاختبار التقييمي</title>
+    <title>اختبار - Pixel</title>
     <link rel="stylesheet" href="../css/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;900&display=swap" rel="stylesheet">
-    <style>
-        body { font-family: 'Noto Kufi Arabic', sans-serif; }
-        .progress-bar { height: 12px; background: var(--border-soft); border-radius: 100px; margin-bottom: 3rem; overflow: hidden; }
-        .progress-fill { height: 100%; background: var(--secondary); width: 0%; transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1); box-shadow: 0 0 20px var(--secondary-light); }
-        .option-card { padding: 1.5rem 2rem; border-radius: 24px; border: 2px solid var(--border-soft); margin-bottom: 1.2rem; cursor: pointer; transition: var(--transition-smooth); display: flex; align-items: center; gap: 1.5rem; background: white; font-weight: 700; font-size: 1.1rem; color: var(--text-slate); }
-        .option-card:hover { border-color: var(--secondary); background: var(--secondary-light); color: var(--secondary); transform: translateX(-10px); }
-        .option-card.selected { border-color: var(--secondary); background: var(--secondary); color: white; box-shadow: 0 10px 30px rgba(124, 58, 237, 0.3); }
-        .option-index { width: 32px; height: 32px; background: var(--border-soft); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; transition: var(--transition-smooth); }
-        .option-card.selected .option-index { background: rgba(255,255,255,0.2); color: white; }
-        .option-card.correct { border-color: #10b981; background: #ecfdf5; color: #065f46; }
-        .option-card.wrong { border-color: #ef4444; background: #fef2f2; color: #991b1b; }
-    </style>
 </head>
 <body>
-    <nav class="navbar reveal">
-        <div class="logo">
-            <div class="logo-dot"></div>
-            Pixel<span>.</span>
-        </div>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="../index.html" class="logo">
+            <span>Pixel</span><span>.</span>
+        </a>
         <ul class="nav-links">
-            <li><a href="../index.html">الرئيسية</a></li>
-            <li><a href="levels.html">المسارات</a></li>
+            <li><a href="../index.html#levels">المسارات</a></li>
             <li><a href="placement-test.html">تحديد المستوى</a></li>
         </ul>
-        <a href="../index.html" class="btn-ghost" style="padding: 0.8rem 1.5rem; font-size: 0.9rem;">العودة للرئيسية</a>
     </nav>
 
-    <header class="hero" style="padding: 6rem 8% 4rem; background: none;">
-        <div class="container">
-            <h1 class="reveal">الاختبار <span style="color: var(--secondary);">التقييمي</span></h1>
-            <p class="reveal" style="animation-delay: 0.2s; font-size: 1.2rem;">اختبر معلوماتك بعد الانتهاء من الدرس لتقييم مدى استيعابك للمفاهيم.</p>
-        </div>
-    </header>
-
-    <main style="display: flex; justify-content: center; align-items: flex-start; min-height: 100vh; padding: 4rem 2rem;">
-        <div class="content-wrapper">
+    <!-- Quiz Container -->
+    <div class="container">
+        <div class="quiz-container">
             <div class="progress-bar">
-                <div id="progress" class="progress-fill"></div>
+                <div class="progress-fill" id="progress"></div>
             </div>
 
-            <div id="quiz-content">
-                <div id="question-header" style="margin-bottom: 3rem;">
-                    <span id="question-counter" style="color: var(--secondary); font-weight: 900; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px;">السؤال 1 من 5</span>
-                    <h2 id="question-text" style="margin-top: 1rem; font-size: 2.2rem; font-weight: 900; line-height: 1.3;">جاري التحميل...</h2>
-                </div>
-                
-                <div id="options-container">
-                    <!-- Options injected via JS -->
-                </div>
-
-                <div style="margin-top: 4rem; display: flex; justify-content: flex-end;">
-                    <button id="next-btn" class="btn-main" style="display: none;">السؤال التالي ➔</button>
-                </div>
+            <div class="question" id="question-container">
+                <h3 id="question-text"></h3>
+                <div class="options" id="options-container"></div>
             </div>
 
-            <div id="result-screen" style="display: none; text-align: center;">
-                <div id="result-icon" style="font-size: 5rem; margin-bottom: 2rem;">🏆</div>
-                <h2 id="result-title" style="font-size: 2.8rem; font-weight: 900; margin-bottom: 1.5rem;">نتيجة الاختبار</h2>
-                <p id="result-score" style="font-size: 1.4rem; color: var(--text-slate); margin-bottom: 3.5rem; max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.8;"></p>
-                <div style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
-                    <button onclick="location.reload()" class="btn-main">إعادة الاختبار</button>
-                    <a href="levels.html" class="btn-ghost">العودة للمسارات</a>
-                </div>
+            <div style="text-align: center; margin-top: 2rem;">
+                <button class="btn btn-primary" id="next-btn" onclick="nextQuestion()" style="display: none;">السؤال التالي</button>
+                <button class="btn btn-primary" id="submit-btn" onclick="submitQuiz()" style="display: none;">إنهاء الاختبار</button>
             </div>
         </div>
-    </main>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p><strong>Pixel Platform</strong> - منصة تعليمية متخصصة في تصميم UI/UX</p>
+        </div>
+    </footer>
 
     <script>
-        const questions = [
-            { q: "ما هو الهدف الأساسي من تصميم تجربة المستخدم (UX)؟", options: ["جعل الموقع يبدو جميلاً فقط", "حل مشاكل المستخدم وتسهيل تفاعله مع المنتج", "زيادة عدد الإعلانات في الصفحة", "تصغير حجم الصور"], correct: 1 },
-            { q: "أي من هذه العناصر يعتبر جزءاً من واجهة المستخدم (UI)؟", options: ["رحلة المستخدم", "الألوان والخطوط والأيقونات", "مقابلات المستخدمين", "هيكلية المعلومات"], correct: 1 },
-            { q: "ماذا تعني المسافات البيضاء (White Space) في التصميم؟", options: ["مساحات فارغة لا فائدة منها", "مساحات تهدف لراحة العين وتوجيه التركيز", "أخطاء في التصميم يجب ملؤها", "خلفية الموقع فقط"], correct: 1 },
-            { q: "ما هو الـ Prototype؟", options: ["رسم أولي بسيط جداً", "نموذج تفاعلي يحاكي المنتج النهائي", "كود برمجي للموقع", "اسم أداة تصميم"], correct: 1 },
-            { q: "لماذا نستخدم 'شخصيات المستخدم' (Personas)؟", options: ["للتسلية فقط", "لتمثيل فئات المستخدمين الحقيقيين وتصميم حلول لهم", "لاختيار صور للموقع", "لزيادة عدد صفحات المشروع"], correct: 1 }
+        const quizQuestions = [
+            {
+                question: "ما هو الهدف الأساسي من تصميم الواجهات؟",
+                options: [
+                    "جعل الموقع جميل فقط",
+                    "تسهيل استخدام التطبيق",
+                    "إضافة الكثير من الألوان",
+                    "لا يوجد هدف محدد"
+                ],
+                correct: 1
+            },
+            {
+                question: "كيف يمكن تحسين تجربة المستخدم؟",
+                options: [
+                    "إضافة المزيد من الميزات",
+                    "فهم احتياجات المستخدم والاستماع لملاحظاته",
+                    "استخدام تقنيات حديثة فقط",
+                    "لا توجد طريقة"
+                ],
+                correct: 1
+            },
+            {
+                question: "ما أهمية الـ Whitespace؟",
+                options: [
+                    "لا أهمية له",
+                    "يحسن القراءة والتركيز",
+                    "يهدر المساحة",
+                    "فقط للتصاميم البسيطة"
+                ],
+                correct: 1
+            },
+            {
+                question: "ما هو Responsive Design؟",
+                options: [
+                    "تصميم يستجيب للمستخدم",
+                    "تصميم يعمل على جميع أحجام الشاشات",
+                    "تصميم سريع",
+                    "تصميم تفاعلي فقط"
+                ],
+                correct: 1
+            },
+            {
+                question: "ما هي أهمية الاختبار في التصميم؟",
+                options: [
+                    "لا أهمية له",
+                    "التأكد من جودة التصميم",
+                    "توفير الوقت",
+                    "فقط للتطبيقات الكبيرة"
+                ],
+                correct: 1
+            }
         ];
 
-        let currentIdx = 0;
+        let currentQuestion = 0;
         let score = 0;
-        let answered = false;
+        let selectedAnswers = [];
 
         function loadQuestion() {
-            answered = false;
-            const q = questions[currentIdx];
-            document.getElementById('question-text').innerText = q.q;
-            document.getElementById('question-counter').innerText = `السؤال ${currentIdx + 1} من ${questions.length}`;
-            document.getElementById('progress').style.width = `${((currentIdx) / questions.length) * 100}%`;
+            const question = quizQuestions[currentQuestion];
+            document.getElementById("question-text").textContent = question.question;
             
-            const container = document.getElementById('options-container');
-            container.innerHTML = '';
+            const optionsContainer = document.getElementById("options-container");
+            optionsContainer.innerHTML = "";
             
-            q.options.forEach((opt, idx) => {
-                const div = document.createElement('div');
-                div.className = 'option-card';
-                div.innerHTML = `<div class="option-index">${String.fromCharCode(65 + idx)}</div> <div>${opt}</div>`;
-                div.onclick = () => selectOption(idx, div);
-                container.appendChild(div);
+            question.options.forEach((option, index) => {
+                const optionDiv = document.createElement("div");
+                optionDiv.className = "option";
+                optionDiv.textContent = option;
+                optionDiv.onclick = () => selectOption(index, optionDiv);
+                optionsContainer.appendChild(optionDiv);
             });
-            document.getElementById('next-btn').style.display = 'none';
+
+            updateProgress();
+            updateButtons();
         }
 
-        function selectOption(idx, element) {
-            if (answered) return;
-            answered = true;
-            const q = questions[currentIdx];
-            const options = document.querySelectorAll('.option-card');
+        function selectOption(index, element) {
+            document.querySelectorAll(".option").forEach(opt => opt.classList.remove("selected"));
+            element.classList.add("selected");
+            selectedAnswers[currentQuestion] = index;
+        }
+
+        function updateProgress() {
+            const progress = ((currentQuestion + 1) / quizQuestions.length) * 100;
+            document.getElementById("progress").style.width = progress + "%";
+        }
+
+        function updateButtons() {
+            const nextBtn = document.getElementById("next-btn");
+            const submitBtn = document.getElementById("submit-btn");
             
-            if (idx === q.correct) {
-                element.classList.add('correct');
-                score++;
+            if (currentQuestion < quizQuestions.length - 1) {
+                nextBtn.style.display = "inline-block";
+                submitBtn.style.display = "none";
             } else {
-                element.classList.add('wrong');
-                options[q.correct].classList.add('correct');
-            }
-            
-            document.getElementById('next-btn').style.display = 'inline-flex';
-            if (currentIdx === questions.length - 1) {
-                document.getElementById('next-btn').innerText = 'عرض النتيجة';
+                nextBtn.style.display = "none";
+                submitBtn.style.display = "inline-block";
             }
         }
 
-        document.getElementById('next-btn').onclick = () => {
-            currentIdx++;
-            if (currentIdx < questions.length) {
+        function nextQuestion() {
+            if (selectedAnswers[currentQuestion] !== undefined) {
+                currentQuestion++;
                 loadQuestion();
             } else {
-                showResult();
+                alert("يرجى اختيار إجابة");
             }
-        };
+        }
 
-        function showResult() {
-            document.getElementById('progress').style.width = '100%';
-            document.getElementById('quiz-content').style.display = 'none';
-            document.getElementById('quiz-footer').style.display = 'none';
-            document.getElementById('result-screen').style.display = 'block';
-            
-            document.getElementById('result-score').innerText = `لقد حصلت على ${score} من أصل ${questions.length}`;
-            if (score < 3) {
-                document.getElementById('result-icon').innerText = '📚';
-                document.getElementById('result-title').innerText = 'تحتاج لمراجعة الدرس مرة أخرى';
+        function submitQuiz() {
+            if (selectedAnswers[currentQuestion] === undefined) {
+                alert("يرجى اختيار إجابة");
+                return;
             }
+
+            score = 0;
+            quizQuestions.forEach((question, index) => {
+                if (selectedAnswers[index] === question.correct) {
+                    score++;
+                }
+            });
+
+            const percentage = Math.round((score / quizQuestions.length) * 100);
+            alert(`نتيجتك: ${score}/${quizQuestions.length}\nالنسبة المئوية: ${percentage}%\n\nممتاز! تابع تعلمك.`);
+            window.location.href = "levels.html";
         }
 
         loadQuestion();
