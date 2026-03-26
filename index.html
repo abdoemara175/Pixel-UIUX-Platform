@@ -1,80 +1,87 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pixel | منصة تعليم UI/UX العصرية</title>
+    <title>Pixel - منصة تعليمية متخصصة في تصميم UI/UX</title>
     <link rel="stylesheet" href="css/style.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@400;700;900&family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 </head>
 <body>
     <nav class="navbar">
-        <div class="logo">
+        <a href="index.html" class="logo">
             <div class="logo-dot"></div>
             <span>Pixel</span><span style="color: var(--secondary);">.</span>
-        </div>
+        </a>
         <ul class="nav-links">
-            <li><a href="index.html" class="active">الرئيسية</a></li>
-            <li><a href="pages/levels.html">المسارات</a></li>
-            <li><a href="pages/placement-test.html">تحديد المستوى</a></li>
+            <li><a href="pages/placement-test.html" class="active">تحديد المستوى</a></li>
+            <li><a href="pages/levels.html">المسارات التعليمية</a></li>
+            <li><a href="#features">المميزات</a></li>
         </ul>
-        <a href="pages/placement-test.html" class="btn-main" style="padding: 0.8rem 2rem; font-size: 1rem;">ابدأ التعلم</a>
     </nav>
 
     <header class="hero">
-        <div class="hero-tag">الجيل الجديد من تعليم التصميم</div>
-        <h1>اتقن فنون الـ <span>UI/UX</span><br>بأسلوب عصري ومبتكر</h1>
-        <p>منصة Pixel تأخذك من الصفر إلى الاحتراف عبر مسارات تعليمية ذكية تعتمد على المعايير العالمية وتجربة مستخدم لا مثيل لها.</p>
-        <div style="display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;">
-            <a href="pages/placement-test.html" class="btn-main">ابدأ اختبار تحديد المستوى</a>
-            <a href="pages/levels.html" class="btn-ghost">استكشف المسارات التعليمية</a>
+        <div class="hero-tag">🎨 منصة تعليمية متخصصة</div>
+        <h1 class="reveal">تعلم <span>تصميم الواجهات</span> <br>من الصفر إلى الاحتراف</h1>
+        <p class="reveal">اكتسب مهارات تصميم UI/UX العملية من خلال مسارات تعليمية منظمة وأدوات تفاعلية متقدمة</p>
+        <div class="reveal" style="display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap;">
+            <a href="pages/placement-test.html" class="btn-main">ابدأ الآن</a>
+            <a href="pages/levels.html" class="btn-ghost">استكشف المسارات</a>
         </div>
     </header>
 
     <main class="container" style="padding: 0 8%;">
         <div class="bento-grid">
-            <!-- Large Item -->
+            <!-- Large Item 1 -->
             <div class="bento-item large reveal">
                 <div>
-                    <div class="icon-box">🧠</div>
-                    <h3>المعايير المعرفية</h3>
-                    <p>نقدم لك أساسيات التصميم الراسخة، من نظريات الألوان إلى سيكولوجية الإدراك، بأسلوب مبسط وعميق يضمن لك فهماً شاملاً لكل التفاصيل.</p>
-                </div>
-                <div style="margin-top: 2rem; display: flex; gap: 0.5rem; flex-wrap: wrap;">
-                    <span style="padding: 0.5rem 1rem; background: var(--secondary-light); color: var(--secondary); border-radius: 100px; font-size: 0.8rem; font-weight: 700;">نظريات الألوان</span>
-                    <span style="padding: 0.5rem 1rem; background: var(--secondary-light); color: var(--secondary); border-radius: 100px; font-size: 0.8rem; font-weight: 700;">سيكولوجية المستخدم</span>
+                    <div class="icon-box">🎯</div>
+                    <h3>اختبار تحديد المستوى</h3>
+                    <p>اكتشف مستواك الحالي في تصميم الواجهات وحدد المسار المناسب لك من خلال اختبار شامل وتفاعلي</p>
                 </div>
             </div>
 
-            <!-- Wide Item -->
-            <div class="bento-item wide reveal">
-                <div class="icon-box">🛠</div>
-                <h3>المهارات التطبيقية</h3>
-                <p>تعلم كيف تحول أفكارك إلى تصاميم حية باستخدام أدوات الصناعة الرائدة مثل Figma، مع التركيز على بناء النماذج التفاعلية والأنظمة التصميمية.</p>
-            </div>
-
-            <!-- Small Item -->
+            <!-- Item 2 -->
             <div class="bento-item reveal">
-                <div class="icon-box">💎</div>
-                <h3>القيم الوجدانية</h3>
-                <p>ننمي فيك الحس النقدي والالتزام بأخلاقيات التصميم لتقديم تجارب مستخدم إنسانية وشاملة.</p>
+                <div>
+                    <div class="icon-box">📚</div>
+                    <h3>محتوى منظم</h3>
+                    <p>دروس مرتبة بعناية تغطي جميع جوانب تصميم الواجهات من الأساسيات إلى المستويات المتقدمة</p>
+                </div>
             </div>
 
-            <!-- Small Item -->
+            <!-- Item 3 -->
             <div class="bento-item reveal">
-                <div class="icon-box">✨</div>
-                <h3>تصميم عصري</h3>
-                <p>واجهة نظيفة، ألوان متناسقة، وتجربة خالية من التوتر اللوني لضمان أقصى درجات التركيز.</p>
+                <div>
+                    <div class="icon-box">✅</div>
+                    <h3>اختبارات تفاعلية</h3>
+                    <p>قيّم معلوماتك بعد كل درس من خلال اختبارات تفاعلية تقدم تغذية راجعة فورية وتفصيلية</p>
+                </div>
             </div>
 
-            <!-- Wide Item at bottom -->
-            <div class="bento-item wide reveal" style="background: linear-gradient(135deg, var(--secondary), var(--secondary-dark)); color: white;">
-                <h3 style="color: white;">ابدأ رحلتك الآن</h3>
-                <p style="color: rgba(255,255,255,0.9);">انضم إلى آلاف المتعلمين واكتشف قوتك الكامنة في عالم التصميم الرقمي.</p>
-                <div style="margin-top: 2rem;">
-                    <a href="pages/placement-test.html" class="btn-main" style="background: white; color: var(--secondary); box-shadow: 0 10px 25px rgba(0,0,0,0.1);">ابدأ الاختبار مجاناً</a>
+            <!-- Item 4 -->
+            <div class="bento-item reveal">
+                <div>
+                    <div class="icon-box">🚀</div>
+                    <h3>مسارات متعددة</h3>
+                    <p>اختر من بين مستويات تعليمية متعددة (مبتدئ، متوسط، متقدم) حسب احتياجاتك وخبرتك</p>
+                </div>
+            </div>
+
+            <!-- Large Item 2 -->
+            <div class="bento-item large reveal">
+                <div>
+                    <div class="icon-box">🎨</div>
+                    <h3>تعلم عملي وفعال</h3>
+                    <p>محتوى تعليمي يجمع بين الجانب النظري والعملي مع أهداف واضحة وقابلة للقياس في كل درس</p>
+                </div>
+            </div>
+
+            <!-- Item 5 -->
+            <div class="bento-item reveal">
+                <div>
+                    <div class="icon-box">🎓</div>
+                    <h3>معايير عالمية</h3>
+                    <p>تتبع المنصة أعلى معايير التصميم التعليمي الرقمي لضمان جودة المحتوى والتجربة</p>
                 </div>
             </div>
         </div>
@@ -82,19 +89,21 @@
 
     <footer>
         <div class="container" style="padding: 0 8%;">
-            <div class="logo" style="justify-content: center; margin-bottom: 2rem;">
+            <div class="logo" style="justify-content: center; margin-bottom: 3rem;">
                 <div class="logo-dot"></div>
                 <span>Pixel</span><span style="color: var(--secondary);">.</span>
             </div>
-            <p style="color: var(--text-slate); max-width: 700px; margin: 0 auto 3rem; font-size: 1.1rem; line-height: 1.8;">منصة Pixel تلتزم بأعلى معايير جودة المحتوى التعليمي الرقمي لضمان تجربة تعلم فريدة ومثمرة.</p>
-            <div style="display: flex; gap: 3rem; justify-content: center; margin-bottom: 3rem; font-weight: 700; flex-wrap: wrap;">
-                <a href="pages/levels.html" style="color: var(--text-dark); text-decoration: none; transition: var(--transition-fast);" onmouseover="this.style.color='var(--secondary)'" onmouseout="this.style.color='var(--text-dark)'">المسارات</a>
-                <a href="pages/placement-test.html" style="color: var(--text-dark); text-decoration: none; transition: var(--transition-fast);" onmouseover="this.style.color='var(--secondary)'" onmouseout="this.style.color='var(--text-dark)'">تحديد المستوى</a>
-                <a href="#" style="color: var(--text-dark); text-decoration: none; transition: var(--transition-fast);" onmouseover="this.style.color='var(--secondary)'" onmouseout="this.style.color='var(--text-dark)'">عن المنصة</a>
+            <p style="color: var(--text-slate); max-width: 750px; margin: 0 auto 4rem; font-size: 1.15rem; line-height: 1.9; font-weight: 500;">
+                منصة Pixel تلتزم بأعلى معايير جودة المحتوى التعليمي الرقمي لضمان تجربة تعلم فريدة وفعالة ومثمرة
+            </p>
+            <div style="display: flex; gap: 4rem; justify-content: center; margin-bottom: 4rem; font-weight: 750; flex-wrap: wrap;">
+                <a href="pages/levels.html" style="color: var(--text-dark); text-decoration: none; transition: var(--transition-fast); font-size: 1.05rem;" onmouseover="this.style.color='var(--secondary)'" onmouseout="this.style.color='var(--text-dark)'">المسارات</a>
+                <a href="pages/placement-test.html" style="color: var(--text-dark); text-decoration: none; transition: var(--transition-fast); font-size: 1.05rem;" onmouseover="this.style.color='var(--secondary)'" onmouseout="this.style.color='var(--text-dark)'">تحديد المستوى</a>
+                <a href="#" style="color: var(--text-dark); text-decoration: none; transition: var(--transition-fast); font-size: 1.05rem;" onmouseover="this.style.color='var(--secondary)'" onmouseout="this.style.color='var(--text-dark)'">عن المنصة</a>
             </div>
-            <div style="border-top: 1px solid var(--border-soft); padding-top: 3rem; color: var(--text-slate); font-size: 0.9rem;">
-                &copy; 2026 Pixel Platform - التميز في تعليم التصميم
-            </div>
+            <p style="color: var(--text-light); font-size: 1rem; border-top: 1px solid var(--border-soft); padding-top: 3rem; margin-top: 3rem;">
+                © 2026 Pixel Platform. جميع الحقوق محفوظة | تصميم واحترافية عالية
+            </p>
         </div>
     </footer>
 </body>
