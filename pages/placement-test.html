@@ -44,60 +44,9 @@
         </div>
     </footer>
 
+    <script src="../js/data.js"></script>
     <script>
-        const questions = [
-            {
-                question: "ما هو الفرق بين UI و UX؟",
-                options: [
-                    "UI هي الواجهة البصرية و UX هي تجربة المستخدم",
-                    "لا يوجد فرق بينهما",
-                    "UI أهم من UX",
-                    "UX فقط للتطبيقات"
-                ],
-                correct: 0
-            },
-            {
-                question: "ما هي أهمية الألوان في التصميم؟",
-                options: [
-                    "لا أهمية لها",
-                    "تؤثر على المزاج والتفاعل",
-                    "فقط للجمال",
-                    "لا تؤثر على التجربة"
-                ],
-                correct: 1
-            },
-            {
-                question: "ما هو Wireframing؟",
-                options: [
-                    "رسم توضيحي بسيط لتخطيط الواجهة",
-                    "تصميم نهائي ملون",
-                    "برنامج تصميم",
-                    "نوع من الخطوط"
-                ],
-                correct: 0
-            },
-            {
-                question: "ما هي أهمية الـ Whitespace؟",
-                options: [
-                    "لا أهمية له",
-                    "يحسن القراءة والتركيز",
-                    "يهدر المساحة",
-                    "فقط للمواقع الفارغة"
-                ],
-                correct: 1
-            },
-            {
-                question: "كم عدد الألوان الأساسية الموصى بها في التصميم؟",
-                options: [
-                    "لا حد معين",
-                    "3-5 ألوان",
-                    "أكثر من 10",
-                    "لون واحد فقط"
-                ],
-                correct: 1
-            }
-        ];
-
+        const questions = pixelData.placementTest;
         let currentQuestion = 0;
         let score = 0;
         let selectedAnswers = [];
@@ -112,6 +61,7 @@
             question.options.forEach((option, index) => {
                 const optionDiv = document.createElement("div");
                 optionDiv.className = "option";
+                if (selectedAnswers[currentQuestion] === index) optionDiv.classList.add("selected");
                 optionDiv.textContent = option;
                 optionDiv.onclick = () => selectOption(index, optionDiv);
                 optionsContainer.appendChild(optionDiv);
@@ -167,15 +117,21 @@
                 }
             });
 
-            let level = "مبتدئ";
-            if (score >= 4) level = "متقدم";
-            else if (score >= 3) level = "متوسط";
+            let level = "beginner";
+            let levelName = "مبتدئ";
+            if (score >= 4) {
+                level = "advanced";
+                levelName = "متقدم";
+            } else if (score >= 3) {
+                level = "intermediate";
+                levelName = "متوسط";
+            }
 
-            alert(`نتيجتك: ${score}/${questions.length}\nمستواك: ${level}`);
-            window.location.href = `levels.html?level=${level.toLowerCase()}`;
+            alert(`نتيجتك: ${score}/${questions.length}\nمستواك المقترح: ${levelName}`);
+            window.location.href = `levels.html?level=${level}`;
         }
 
-        loadQuestion();
+        window.onload = loadQuestion;
     </script>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>اختبار - Pixel</title>
+    <title>اختبار الدرس - Pixel</title>
     <link rel="stylesheet" href="../css/style.css">
 </head>
 <body>
@@ -21,18 +21,23 @@
     <!-- Quiz Container -->
     <div class="container">
         <div class="quiz-container">
+            <h2 id="quiz-title" style="margin-bottom: 1.5rem; text-align: center;">اختبار الدرس</h2>
             <div class="progress-bar">
                 <div class="progress-fill" id="progress"></div>
             </div>
 
             <div class="question" id="question-container">
-                <h3 id="question-text"></h3>
+                <h3 id="question-text">جاري تحميل الأسئلة...</h3>
                 <div class="options" id="options-container"></div>
             </div>
 
             <div style="text-align: center; margin-top: 2rem;">
                 <button class="btn btn-primary" id="next-btn" onclick="nextQuestion()" style="display: none;">السؤال التالي</button>
                 <button class="btn btn-primary" id="submit-btn" onclick="submitQuiz()" style="display: none;">إنهاء الاختبار</button>
+                <div id="quiz-result-actions" style="display: none; margin-top: 1rem; gap: 1rem; justify-content: center;">
+                    <a id="back-to-lesson" href="#" class="btn btn-secondary">العودة للدرس</a>
+                    <a id="next-lesson-link" href="#" class="btn btn-primary">الدرس التالي</a>
+                </div>
             </div>
         </div>
     </div>
@@ -44,66 +49,45 @@
         </div>
     </footer>
 
+    <script src="../js/data.js"></script>
     <script>
-        const quizQuestions = [
-            {
-                question: "ما هو الهدف الأساسي من تصميم الواجهات؟",
-                options: [
-                    "جعل الموقع جميل فقط",
-                    "تسهيل استخدام التطبيق",
-                    "إضافة الكثير من الألوان",
-                    "لا يوجد هدف محدد"
-                ],
-                correct: 1
-            },
-            {
-                question: "كيف يمكن تحسين تجربة المستخدم؟",
-                options: [
-                    "إضافة المزيد من الميزات",
-                    "فهم احتياجات المستخدم والاستماع لملاحظاته",
-                    "استخدام تقنيات حديثة فقط",
-                    "لا توجد طريقة"
-                ],
-                correct: 1
-            },
-            {
-                question: "ما أهمية الـ Whitespace؟",
-                options: [
-                    "لا أهمية له",
-                    "يحسن القراءة والتركيز",
-                    "يهدر المساحة",
-                    "فقط للتصاميم البسيطة"
-                ],
-                correct: 1
-            },
-            {
-                question: "ما هو Responsive Design؟",
-                options: [
-                    "تصميم يستجيب للمستخدم",
-                    "تصميم يعمل على جميع أحجام الشاشات",
-                    "تصميم سريع",
-                    "تصميم تفاعلي فقط"
-                ],
-                correct: 1
-            },
-            {
-                question: "ما هي أهمية الاختبار في التصميم؟",
-                options: [
-                    "لا أهمية له",
-                    "التأكد من جودة التصميم",
-                    "توفير الوقت",
-                    "فقط للتطبيقات الكبيرة"
-                ],
-                correct: 1
-            }
-        ];
-
+        let questions = [];
         let currentQuestion = 0;
         let score = 0;
         let selectedAnswers = [];
+        let levelKey, lessonId;
+
+        function initQuiz() {
+            const params = new URLSearchParams(window.location.search);
+            levelKey = params.get('level') || 'beginner';
+            lessonId = parseInt(params.get('lesson')) || 1;
+
+            const level = pixelData.levels[levelKey];
+            const lessonIndex = level ? level.lessons.findIndex(l => l.id === lessonId) : -1;
+            const lesson = lessonIndex !== -1 ? level.lessons[lessonIndex] : null;
+
+            if (lesson && lesson.quiz) {
+                questions = lesson.quiz;
+                document.getElementById('quiz-title').textContent = `اختبار: ${lesson.title}`;
+                document.getElementById('back-to-lesson').href = `lesson-detail.html?level=${levelKey}&lesson=${lessonId}`;
+                
+                // Setup next lesson link
+                if (lessonIndex < level.lessons.length - 1) {
+                    const nextLesson = level.lessons[lessonIndex + 1];
+                    document.getElementById('next-lesson-link').href = `lesson-detail.html?level=${levelKey}&lesson=${nextLesson.id}`;
+                    document.getElementById('next-lesson-link').style.display = 'inline-block';
+                } else {
+                    document.getElementById('next-lesson-link').style.display = 'none';
+                }
+
+                loadQuestion();
+            } else {
+                document.getElementById('question-text').textContent = "لا يوجد اختبار لهذا الدرس حالياً.";
+            }
+        }
 
         function loadQuestion() {
-            const question = quizQuestions[currentQuestion];
+            const question = questions[currentQuestion];
             document.getElementById("question-text").textContent = question.question;
             
             const optionsContainer = document.getElementById("options-container");
@@ -112,6 +96,7 @@
             question.options.forEach((option, index) => {
                 const optionDiv = document.createElement("div");
                 optionDiv.className = "option";
+                if (selectedAnswers[currentQuestion] === index) optionDiv.classList.add("selected");
                 optionDiv.textContent = option;
                 optionDiv.onclick = () => selectOption(index, optionDiv);
                 optionsContainer.appendChild(optionDiv);
@@ -128,7 +113,7 @@
         }
 
         function updateProgress() {
-            const progress = ((currentQuestion + 1) / quizQuestions.length) * 100;
+            const progress = ((currentQuestion + 1) / questions.length) * 100;
             document.getElementById("progress").style.width = progress + "%";
         }
 
@@ -136,7 +121,7 @@
             const nextBtn = document.getElementById("next-btn");
             const submitBtn = document.getElementById("submit-btn");
             
-            if (currentQuestion < quizQuestions.length - 1) {
+            if (currentQuestion < questions.length - 1) {
                 nextBtn.style.display = "inline-block";
                 submitBtn.style.display = "none";
             } else {
@@ -161,18 +146,25 @@
             }
 
             score = 0;
-            quizQuestions.forEach((question, index) => {
+            questions.forEach((question, index) => {
                 if (selectedAnswers[index] === question.correct) {
                     score++;
                 }
             });
 
-            const percentage = Math.round((score / quizQuestions.length) * 100);
-            alert(`نتيجتك: ${score}/${quizQuestions.length}\nالنسبة المئوية: ${percentage}%\n\nممتاز! تابع تعلمك.`);
-            window.location.href = "levels.html";
+            const percentage = (score / questions.length) * 100;
+            let message = `نتيجتك: ${score}/${questions.length} (${percentage}%)\n`;
+            
+            if (percentage >= 80) message += "ممتاز! لقد أتقنت هذا الدرس.";
+            else if (percentage >= 50) message += "جيد، ولكن يمكنك مراجعة الدرس مرة أخرى.";
+            else message += "تحتاج لمراجعة الدرس جيداً قبل الانتقال للدرس التالي.";
+
+            alert(message);
+            document.getElementById('quiz-result-actions').style.display = 'flex';
+            document.getElementById('submit-btn').style.display = 'none';
         }
 
-        loadQuestion();
+        window.onload = initQuiz;
     </script>
 </body>
 </html>

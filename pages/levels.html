@@ -20,27 +20,17 @@
 
     <!-- Content -->
     <div class="container" style="padding: 3rem 5%;">
-        <h1 style="margin-bottom: 2rem;">المسارات التعليمية</h1>
+        <div id="level-header" style="margin-bottom: 3rem;">
+            <h1 id="level-title">المسارات التعليمية</h1>
+            <p id="level-desc" style="color: #64748b; font-size: 1.1rem; margin-top: 0.5rem;">اختر المسار الذي يناسبك وابدأ رحلتك التعليمية</p>
+        </div>
         
-        <div class="levels-grid">
-            <div class="level-card">
-                <div class="level-icon">🌱</div>
-                <h3>مستوى المبتدئين</h3>
-                <p>تعلم أساسيات تصميم الواجهات والمفاهيم الأولية</p>
-                <a href="lesson-detail.html?level=beginner&lesson=1" class="btn btn-primary">ابدأ التعلم</a>
-            </div>
-            <div class="level-card">
-                <div class="level-icon">📈</div>
-                <h3>مستوى المتوسط</h3>
-                <p>طور مهاراتك في التصميم والتقنيات المتقدمة</p>
-                <a href="lesson-detail.html?level=intermediate&lesson=1" class="btn btn-primary">ابدأ التعلم</a>
-            </div>
-            <div class="level-card">
-                <div class="level-icon">⭐</div>
-                <h3>مستوى متقدم</h3>
-                <p>أتقن مهارات التصميم والاستراتيجيات المتطورة</p>
-                <a href="lesson-detail.html?level=advanced&lesson=1" class="btn btn-primary">ابدأ التعلم</a>
-            </div>
+        <div id="content-grid" class="levels-grid">
+            <!-- Content will be loaded here -->
+        </div>
+
+        <div id="back-to-levels" style="margin-top: 3rem; display: none;">
+            <a href="levels.html" class="btn btn-secondary">العودة لجميع المسارات</a>
         </div>
     </div>
 
@@ -50,5 +40,60 @@
             <p><strong>Pixel Platform</strong> - منصة تعليمية متخصصة في تصميم UI/UX</p>
         </div>
     </footer>
+
+    <script src="../js/data.js"></script>
+    <script>
+        function loadContent() {
+            const params = new URLSearchParams(window.location.search);
+            let levelKey = params.get('level');
+            
+            // Handle Arabic level names from placement test
+            if (levelKey === 'مبتدئ') levelKey = 'beginner';
+            if (levelKey === 'متوسط') levelKey = 'intermediate';
+            if (levelKey === 'متقدم') levelKey = 'advanced';
+
+            const grid = document.getElementById('content-grid');
+            const title = document.getElementById('level-title');
+            const desc = document.getElementById('level-desc');
+            const backBtn = document.getElementById('back-to-levels');
+
+            if (levelKey && pixelData.levels[levelKey]) {
+                const level = pixelData.levels[levelKey];
+                title.textContent = level.title;
+                desc.textContent = level.description;
+                backBtn.style.display = 'block';
+                
+                grid.innerHTML = '';
+                level.lessons.forEach((lesson, index) => {
+                    const card = document.createElement('div');
+                    card.className = 'level-card';
+                    card.innerHTML = `
+                        <div class="level-icon">${index + 1}</div>
+                        <h3>${lesson.title}</h3>
+                        <p>اضغط للبدء في تعلم هذا الدرس واكتشاف محتواه.</p>
+                        <a href="lesson-detail.html?level=${levelKey}&lesson=${lesson.id}" class="btn btn-primary">ابدأ الدرس</a>
+                    `;
+                    grid.appendChild(card);
+                });
+            } else {
+                // Show all levels
+                grid.innerHTML = '';
+                Object.keys(pixelData.levels).forEach(key => {
+                    const level = pixelData.levels[key];
+                    const card = document.createElement('div');
+                    card.className = 'level-card';
+                    card.innerHTML = `
+                        <div class="level-icon">${level.icon}</div>
+                        <h3>${level.title}</h3>
+                        <p>${level.description}</p>
+                        <a href="levels.html?level=${key}" class="btn btn-primary">استكشف الدروس</a>
+                    `;
+                    grid.appendChild(card);
+                });
+            }
+        }
+
+        window.onload = loadContent;
+    </script>
 </body>
 </html>

@@ -5,6 +5,70 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>درس - Pixel</title>
     <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .lesson-layout {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+        .sidebar {
+            background: #f8fafc;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid #e2e8f0;
+            height: fit-content;
+        }
+        .sidebar h4 {
+            margin-bottom: 1rem;
+            color: #1e293b;
+            border-bottom: 2px solid #3b82f6;
+            padding-bottom: 0.5rem;
+        }
+        .lesson-list {
+            list-style: none;
+            padding: 0;
+        }
+        .lesson-list li {
+            margin-bottom: 0.5rem;
+        }
+        .lesson-list a {
+            text-decoration: none;
+            color: #64748b;
+            display: block;
+            padding: 0.5rem;
+            border-radius: 6px;
+            transition: all 0.3s;
+        }
+        .lesson-list a:hover, .lesson-list a.active {
+            background: #3b82f6;
+            color: white;
+        }
+        .lesson-content-area {
+            background: white;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+        .lesson-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e2e8f0;
+        }
+        @media (max-width: 768px) {
+            .lesson-layout {
+                grid-template-columns: 1fr;
+            }
+            .sidebar {
+                order: 2;
+            }
+            .lesson-content-area {
+                order: 1;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation -->
@@ -19,22 +83,33 @@
     </nav>
 
     <!-- Content -->
-    <div class="container" style="padding: 3rem 5%; max-width: 800px;">
-        <div style="margin-bottom: 2rem;">
-            <a href="levels.html" class="btn btn-secondary">العودة للمسارات</a>
+    <div class="container" style="padding: 3rem 5%;">
+        <div style="margin-bottom: 1rem;">
+            <a id="back-link" href="levels.html" class="btn btn-secondary">العودة للمسار</a>
         </div>
 
-        <div class="quiz-container">
-            <h1 id="lesson-title">درس تعليمي</h1>
-            
-            <div id="lesson-content" style="margin: 2rem 0; line-height: 1.8; color: #475569;">
-                <p>محتوى الدرس سيظهر هنا...</p>
-            </div>
+        <div class="lesson-layout">
+            <!-- Sidebar -->
+            <aside class="sidebar">
+                <h4 id="sidebar-title">قائمة الدروس</h4>
+                <ul class="lesson-list" id="lesson-list">
+                    <!-- Lessons will be loaded here -->
+                </ul>
+            </aside>
 
-            <div style="margin-top: 3rem; display: flex; gap: 1rem; flex-wrap: wrap;">
-                <a href="quiz.html" class="btn btn-primary">اختبر معلوماتك</a>
-                <a href="levels.html" class="btn btn-secondary">العودة</a>
-            </div>
+            <!-- Main Content -->
+            <main class="lesson-content-area">
+                <h1 id="lesson-title">جاري التحميل...</h1>
+                <div id="lesson-content" style="margin: 2rem 0; line-height: 1.8; color: #475569;">
+                    <p>محتوى الدرس سيظهر هنا...</p>
+                </div>
+
+                <div class="lesson-nav">
+                    <a id="prev-lesson" href="#" class="btn btn-secondary" style="visibility: hidden;">الدرس السابق</a>
+                    <a id="quiz-link" href="quiz.html" class="btn btn-primary">اختبر معلوماتك</a>
+                    <a id="next-lesson" href="#" class="btn btn-secondary" style="visibility: hidden;">الدرس التالي</a>
+                </div>
+            </main>
         </div>
     </div>
 
@@ -45,36 +120,61 @@
         </div>
     </footer>
 
+    <script src="../js/data.js"></script>
     <script>
-        const lessons = {
-            beginner: [
-                { title: "مقدمة إلى UI/UX", content: "تعلم الفرق بين UI و UX وأهمية كل منهما في التصميم الحديث." },
-                { title: "أساسيات الألوان", content: "فهم نظرية الألوان وكيفية اختيار الألوان المناسبة للتصميم." }
-            ],
-            intermediate: [
-                { title: "التصميم المتجاوب", content: "تعلم كيفية تصميم واجهات تعمل على جميع الأجهزة." },
-                { title: "تجربة المستخدم", content: "فهم احتياجات المستخدم وكيفية تحسين تجربته." }
-            ],
-            advanced: [
-                { title: "التصميم المتقدم", content: "تقنيات متقدمة في تصميم الواجهات والتفاعلات." },
-                { title: "الاختبار والتحسين", content: "كيفية اختبار التصاميم وتحسينها بناءً على ملاحظات المستخدمين." }
-            ]
-        };
-
         function loadLesson() {
             const params = new URLSearchParams(window.location.search);
-            const level = params.get('level') || 'beginner';
-            const lessonNum = parseInt(params.get('lesson')) || 1;
+            const levelKey = params.get('level') || 'beginner';
+            const lessonId = parseInt(params.get('lesson')) || 1;
 
-            const lesson = lessons[level] && lessons[level][lessonNum - 1];
-            
+            const level = pixelData.levels[levelKey];
+            if (!level) return;
+
+            const lessonIndex = level.lessons.findIndex(l => l.id === lessonId);
+            const lesson = level.lessons[lessonIndex];
+
             if (lesson) {
+                document.title = `${lesson.title} - Pixel`;
                 document.getElementById('lesson-title').textContent = lesson.title;
-                document.getElementById('lesson-content').innerHTML = `<p>${lesson.content}</p>`;
+                document.getElementById('lesson-content').innerHTML = lesson.content;
+                document.getElementById('sidebar-title').textContent = level.title;
+                document.getElementById('back-link').href = `levels.html?level=${levelKey}`;
+                document.getElementById('quiz-link').href = `quiz.html?level=${levelKey}&lesson=${lessonId}`;
+
+                // Load Sidebar
+                const list = document.getElementById('lesson-list');
+                list.innerHTML = '';
+                level.lessons.forEach(l => {
+                    const li = document.createElement('li');
+                    const a = document.createElement('a');
+                    a.href = `lesson-detail.html?level=${levelKey}&lesson=${l.id}`;
+                    a.textContent = l.title;
+                    if (l.id === lessonId) a.className = 'active';
+                    li.appendChild(a);
+                    list.appendChild(li);
+                });
+
+                // Navigation Buttons
+                const prevBtn = document.getElementById('prev-lesson');
+                const nextBtn = document.getElementById('next-lesson');
+
+                if (lessonIndex > 0) {
+                    prevBtn.href = `lesson-detail.html?level=${levelKey}&lesson=${level.lessons[lessonIndex - 1].id}`;
+                    prevBtn.style.visibility = 'visible';
+                } else {
+                    prevBtn.style.visibility = 'hidden';
+                }
+
+                if (lessonIndex < level.lessons.length - 1) {
+                    nextBtn.href = `lesson-detail.html?level=${levelKey}&lesson=${level.lessons[lessonIndex + 1].id}`;
+                    nextBtn.style.visibility = 'visible';
+                } else {
+                    nextBtn.style.visibility = 'hidden';
+                }
             }
         }
 
-        loadLesson();
+        window.onload = loadLesson;
     </script>
 </body>
 </html>
