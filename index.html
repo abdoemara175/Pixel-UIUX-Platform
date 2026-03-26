@@ -5,6 +5,160 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pixel - منصة تعليمية متخصصة في تصميم UI/UX</title>
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        .levels-section {
+            padding: 6rem 8%;
+            background: linear-gradient(135deg, #fafbfc 0%, #f1f5f9 100%);
+        }
+
+        .section-title {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+            text-align: center;
+            letter-spacing: -1px;
+        }
+
+        .section-subtitle {
+            font-size: 1.3rem;
+            color: var(--text-slate);
+            text-align: center;
+            margin-bottom: 5rem;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.8;
+        }
+
+        .levels-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .level-card {
+            background: linear-gradient(135deg, #ffffff 0%, #fafbfc 100%);
+            border-radius: 28px;
+            padding: 3.5rem 2.5rem;
+            border: 1.5px solid var(--border-soft);
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            animation: slideInRight 0.7s ease-out;
+        }
+
+        .level-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--secondary), var(--accent), transparent);
+            opacity: 0;
+            transition: opacity var(--transition-fast);
+        }
+
+        .level-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at top right, rgba(124, 58, 237, 0.05), transparent);
+            opacity: 0;
+            transition: opacity var(--transition-fast);
+            pointer-events: none;
+        }
+
+        .level-card:hover {
+            transform: translateY(-20px);
+            box-shadow: 0 30px 60px rgba(124, 58, 237, 0.15);
+            border-color: var(--secondary-light);
+        }
+
+        .level-card:hover::before {
+            opacity: 1;
+        }
+
+        .level-card:hover::after {
+            opacity: 1;
+        }
+
+        .level-icon {
+            width: 90px;
+            height: 90px;
+            background: linear-gradient(135deg, var(--secondary-light), rgba(167, 139, 250, 0.1));
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            transition: var(--transition-fast);
+            border: 2px solid var(--secondary-light);
+        }
+
+        .level-card:hover .level-icon {
+            transform: scale(1.3) rotate(-10deg);
+            background: linear-gradient(135deg, var(--secondary), var(--accent));
+            border-color: var(--secondary);
+        }
+
+        .level-card h3 {
+            font-size: 1.8rem;
+            font-weight: 850;
+            margin-bottom: 1.2rem;
+            color: var(--text-dark);
+            transition: var(--transition-fast);
+            letter-spacing: -0.5px;
+        }
+
+        .level-card:hover h3 {
+            color: var(--secondary);
+        }
+
+        .level-card p {
+            color: var(--text-slate);
+            font-size: 1.05rem;
+            line-height: 1.85;
+            margin-bottom: 2.5rem;
+            flex-grow: 1;
+            font-weight: 500;
+        }
+
+        .level-card-btn {
+            padding: 1rem 2.5rem;
+            background: linear-gradient(135deg, var(--secondary), var(--secondary-dark));
+            color: white;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 800;
+            font-size: 1rem;
+            transition: var(--transition-smooth);
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(124, 58, 237, 0.2);
+            letter-spacing: 0.5px;
+        }
+
+        .level-card-btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 15px 40px rgba(124, 58, 237, 0.3);
+        }
+
+        .level-card:nth-child(1) { animation-delay: 0.1s; }
+        .level-card:nth-child(2) { animation-delay: 0.2s; }
+        .level-card:nth-child(3) { animation-delay: 0.3s; }
+    </style>
 </head>
 <body>
     <nav class="navbar">
@@ -13,8 +167,8 @@
             <span>Pixel</span><span style="color: var(--secondary);">.</span>
         </a>
         <ul class="nav-links">
-            <li><a href="pages/placement-test.html" class="active">تحديد المستوى</a></li>
-            <li><a href="pages/levels.html">المسارات التعليمية</a></li>
+            <li><a href="#levels" class="active">المسارات</a></li>
+            <li><a href="pages/placement-test.html">تحديد المستوى</a></li>
             <li><a href="#features">المميزات</a></li>
         </ul>
     </nav>
@@ -25,14 +179,15 @@
         <p class="reveal">اكتسب مهارات تصميم UI/UX العملية من خلال مسارات تعليمية منظمة وأدوات تفاعلية متقدمة</p>
         <div class="reveal" style="display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap;">
             <a href="pages/placement-test.html" class="btn-main">ابدأ الآن</a>
-            <a href="pages/levels.html" class="btn-ghost">استكشف المسارات</a>
+            <a href="#levels" class="btn-ghost">استكشف المسارات</a>
         </div>
     </header>
 
-    <main class="container" style="padding: 0 8%;">
-        <div class="bento-grid">
-            <!-- Large Item 1 -->
-            <div class="bento-item large reveal">
+    <!-- Features Section -->
+    <main class="container" style="padding: 0 8%; margin: 8rem 0;">
+        <div class="bento-grid" id="features">
+            <!-- Item 1 -->
+            <div class="bento-item reveal">
                 <div>
                     <div class="icon-box">🎯</div>
                     <h3>اختبار تحديد المستوى</h3>
@@ -67,8 +222,8 @@
                 </div>
             </div>
 
-            <!-- Large Item 2 -->
-            <div class="bento-item large reveal">
+            <!-- Item 5 -->
+            <div class="bento-item reveal">
                 <div>
                     <div class="icon-box">🎨</div>
                     <h3>تعلم عملي وفعال</h3>
@@ -76,7 +231,7 @@
                 </div>
             </div>
 
-            <!-- Item 5 -->
+            <!-- Item 6 -->
             <div class="bento-item reveal">
                 <div>
                     <div class="icon-box">🎓</div>
@@ -86,6 +241,38 @@
             </div>
         </div>
     </main>
+
+    <!-- Levels Section -->
+    <section class="levels-section" id="levels">
+        <h2 class="section-title reveal">اختر مسارك التعليمي</h2>
+        <p class="section-subtitle reveal">ابدأ من المستوى الذي يناسب خبرتك وتقدم في رحلتك التعليمية بخطى ثابتة وآمنة</p>
+        
+        <div class="levels-grid">
+            <!-- Beginner Level -->
+            <div class="level-card reveal">
+                <div class="level-icon">🌱</div>
+                <h3>مستوى المبتدئين</h3>
+                <p>ابدأ من الأساسيات وتعلم المفاهيم الأساسية لتصميم الواجهات والمبادئ الأولية</p>
+                <a href="pages/levels.html?level=beginner" class="level-card-btn">ابدأ التعلم</a>
+            </div>
+
+            <!-- Intermediate Level -->
+            <div class="level-card reveal">
+                <div class="level-icon">📈</div>
+                <h3>مستوى المتوسط</h3>
+                <p>طور مهاراتك وتعمق في تقنيات التصميم المتقدمة وأفضل الممارسات الاحترافية</p>
+                <a href="pages/levels.html?level=intermediate" class="level-card-btn">ابدأ التعلم</a>
+            </div>
+
+            <!-- Advanced Level -->
+            <div class="level-card reveal">
+                <div class="level-icon">⭐</div>
+                <h3>مستوى متقدم</h3>
+                <p>أتقن مهارات التصميم وتعلم الاستراتيجيات المتطورة والتطبيقات العملية الحقيقية</p>
+                <a href="pages/levels.html?level=advanced" class="level-card-btn">ابدأ التعلم</a>
+            </div>
+        </div>
+    </section>
 
     <footer>
         <div class="container" style="padding: 0 8%;">
@@ -97,7 +284,7 @@
                 منصة Pixel تلتزم بأعلى معايير جودة المحتوى التعليمي الرقمي لضمان تجربة تعلم فريدة وفعالة ومثمرة
             </p>
             <div style="display: flex; gap: 4rem; justify-content: center; margin-bottom: 4rem; font-weight: 750; flex-wrap: wrap;">
-                <a href="pages/levels.html" style="color: var(--text-dark); text-decoration: none; transition: var(--transition-fast); font-size: 1.05rem;" onmouseover="this.style.color='var(--secondary)'" onmouseout="this.style.color='var(--text-dark)'">المسارات</a>
+                <a href="#levels" style="color: var(--text-dark); text-decoration: none; transition: var(--transition-fast); font-size: 1.05rem;" onmouseover="this.style.color='var(--secondary)'" onmouseout="this.style.color='var(--text-dark)'">المسارات</a>
                 <a href="pages/placement-test.html" style="color: var(--text-dark); text-decoration: none; transition: var(--transition-fast); font-size: 1.05rem;" onmouseover="this.style.color='var(--secondary)'" onmouseout="this.style.color='var(--text-dark)'">تحديد المستوى</a>
                 <a href="#" style="color: var(--text-dark); text-decoration: none; transition: var(--transition-fast); font-size: 1.05rem;" onmouseover="this.style.color='var(--secondary)'" onmouseout="this.style.color='var(--text-dark)'">عن المنصة</a>
             </div>
