@@ -169,6 +169,88 @@ body {
     padding: 0 5%;
 }
 
+/* Learning Objectives Section */
+.learning-objectives {
+    padding: 5rem 5%;
+    background: linear-gradient(135deg, white 0%, var(--secondary-light) 100%);
+}
+
+.learning-objectives h2 {
+    text-align: center;
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-dark);
+}
+
+.objectives-subtitle {
+    text-align: center;
+    color: var(--text-slate);
+    margin-bottom: 3rem;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    font-size: 1.1rem;
+}
+
+.objectives-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 2.5rem;
+}
+
+.objective-card {
+    padding: 2.5rem;
+    background: white;
+    border-radius: 16px;
+    border: 2px solid var(--border-soft);
+    transition: all 0.3s;
+    position: relative;
+    overflow: hidden;
+    animation: slideUp 0.5s ease-out;
+}
+
+.objective-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, var(--secondary), #a78bfa);
+    transform: scaleY(0);
+    transform-origin: top;
+    transition: transform 0.3s ease;
+}
+
+.objective-card:hover::before {
+    transform: scaleY(1);
+}
+
+.objective-card:hover {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--secondary);
+}
+
+.objective-number {
+    font-size: 2.5rem;
+    font-weight: 900;
+    color: var(--secondary);
+    margin-bottom: 1rem;
+    opacity: 0.3;
+}
+
+.objective-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: var(--text-dark);
+}
+
+.objective-card p {
+    color: var(--text-slate);
+    line-height: 1.7;
+}
+
 /* Features Grid */
 .features {
     padding: 5rem 5%;
