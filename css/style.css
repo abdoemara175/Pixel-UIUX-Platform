@@ -96,9 +96,48 @@ body {
 
 /* Hero Section */
 .hero {
-    padding: 6rem 5%;
+    padding: 8rem 5%;
     text-align: center;
-    background: linear-gradient(135deg, #ffffff 0%, var(--bg-main) 100%);
+    background: 
+        radial-gradient(circle at 10% 20%, rgba(124, 58, 237, 0.05) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(124, 58, 237, 0.05) 0%, transparent 40%),
+        linear-gradient(135deg, #ffffff 0%, var(--bg-main) 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: radial-gradient(var(--secondary) 0.5px, transparent 0.5px);
+    background-size: 30px 30px;
+    opacity: 0.1;
+    pointer-events: none;
+}
+
+.hero::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) skewY(-2deg);
+    width: 90%;
+    max-width: 1000px;
+    height: 400px;
+    background: linear-gradient(135deg, rgba(124, 58, 237, 0.08) 0%, rgba(167, 139, 250, 0.05) 100%);
+    border-radius: 20px;
+    z-index: 1;
+    pointer-events: none;
+    box-shadow: 0 20px 60px rgba(124, 58, 237, 0.08);
+}
+
+.hero > * {
+    position: relative;
+    z-index: 2;
 }
 
 .hero h1 {
@@ -170,12 +209,12 @@ body {
 }
 
 /* Learning Objectives Section */
-.learning-objectives {
+.objectives {
     padding: 5rem 5%;
-    background: linear-gradient(135deg, white 0%, var(--secondary-light) 100%);
+    background: linear-gradient(135deg, #f5f3ff 0%, white 100%);
 }
 
-.learning-objectives h2 {
+.objectives h2 {
     text-align: center;
     font-size: 2.5rem;
     margin-bottom: 1rem;
@@ -194,61 +233,59 @@ body {
 
 .objectives-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 2.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
 }
 
 .objective-card {
-    padding: 2.5rem;
+    padding: 2rem;
     background: white;
     border-radius: 16px;
     border: 2px solid var(--border-soft);
+    text-align: center;
     transition: all 0.3s;
-    position: relative;
-    overflow: hidden;
     animation: slideUp 0.5s ease-out;
+    position: relative;
 }
 
 .objective-card::before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
+    left: 0;
     right: 0;
-    width: 4px;
-    height: 100%;
-    background: linear-gradient(180deg, var(--secondary), #a78bfa);
-    transform: scaleY(0);
-    transform-origin: top;
-    transition: transform 0.3s ease;
-}
-
-.objective-card:hover::before {
-    transform: scaleY(1);
+    height: 4px;
+    background: linear-gradient(90deg, var(--secondary), #a78bfa);
+    border-radius: 16px 16px 0 0;
+    opacity: 0;
+    transition: opacity 0.3s;
 }
 
 .objective-card:hover {
-    transform: translateY(-10px);
-    box-shadow: var(--shadow-lg);
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-md);
     border-color: var(--secondary);
 }
 
-.objective-number {
+.objective-card:hover::before {
+    opacity: 1;
+}
+
+.objective-icon {
     font-size: 2.5rem;
-    font-weight: 900;
-    color: var(--secondary);
     margin-bottom: 1rem;
-    opacity: 0.3;
 }
 
 .objective-card h3 {
-    font-size: 1.3rem;
-    margin-bottom: 1rem;
+    font-size: 1.2rem;
+    margin-bottom: 0.8rem;
     color: var(--text-dark);
 }
 
 .objective-card p {
     color: var(--text-slate);
     line-height: 1.7;
+    font-size: 0.95rem;
 }
 
 /* Features Grid */
@@ -465,7 +502,8 @@ footer p {
     }
     
     .features-grid,
-    .levels-grid {
+    .levels-grid,
+    .objectives-grid {
         grid-template-columns: 1fr;
     }
     
