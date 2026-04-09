@@ -44,7 +44,11 @@
     </footer>
 
     <script src="../js/data.js"></script>
+    <script src="../js/auth.js"></script>
     <script>
+        // Protect this page
+        auth.protectPage();
+
         function loadContent() {
             const params = new URLSearchParams(window.location.search);
             let levelKey = params.get('level');

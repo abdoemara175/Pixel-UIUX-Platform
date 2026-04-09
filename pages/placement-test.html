@@ -46,7 +46,11 @@
     </footer>
 
     <script src="../js/data.js"></script>
+    <script src="../js/auth.js"></script>
     <script>
+        // Protect this page
+        auth.protectPage();
+
         const questions = pixelData.placementTest;
         let currentQuestion = 0;
         let score = 0;

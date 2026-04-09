@@ -123,7 +123,11 @@
     </footer>
 
     <script src="../js/data.js"></script>
+    <script src="../js/auth.js"></script>
     <script>
+        // Protect this page
+        auth.protectPage();
+
         function loadLesson() {
             const params = new URLSearchParams(window.location.search);
             const levelKey = params.get('level') || 'beginner';

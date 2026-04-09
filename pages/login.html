@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول - Pixel</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .auth-container {
+            max-width: 450px;
+            margin: 5rem auto;
+            padding: 3rem;
+            background: white;
+            border-radius: 20px;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border-soft);
+        }
+        .auth-header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+        }
+        .auth-header h1 {
+            font-size: 2rem;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+        .auth-header p {
+            color: var(--text-slate);
+        }
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+        .form-group input {
+            width: 100%;
+            padding: 1rem;
+            border-radius: 12px;
+            border: 2px solid var(--border-soft);
+            font-size: 1rem;
+            transition: all 0.3s;
+            outline: none;
+        }
+        .form-group input:focus {
+            border-color: var(--secondary);
+            background: var(--secondary-light);
+        }
+        .auth-btn {
+            width: 100%;
+            margin-top: 1rem;
+            padding: 1.2rem;
+            font-size: 1.1rem;
+        }
+        .auth-footer {
+            text-align: center;
+            margin-top: 2rem;
+            color: var(--text-slate);
+        }
+        .auth-footer a {
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="../index.html" class="logo">
+            <span>Pixel</span><span>.</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="../index.html">الرئيسية</a></li>
+            <li><a href="../index.html#levels">المسارات</a></li>
+            <li><a href="placement-test.html">تحديد المستوى</a></li>
+            <li><a href="../index.html#features">المميزات</a></li>
+        </ul>
+    </nav>
+
+    <div class="container">
+        <div class="auth-container">
+            <div class="auth-header">
+                <h1>أهلاً بك مجدداً</h1>
+                <p>قم بتسجيل الدخول لمتابعة رحلتك التعليمية</p>
+            </div>
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="email">البريد الإلكتروني</label>
+                    <input type="email" id="email" placeholder="example@mail.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">كلمة المرور</label>
+                    <input type="password" id="password" placeholder="••••••••" required>
+                </div>
+                <button type="submit" class="btn btn-primary auth-btn">تسجيل الدخول</button>
+            </form>
+            <div class="auth-footer">
+                <p>ليس لديك حساب؟ <a href="signup.html">إنشاء حساب جديد</a></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p><strong>Pixel Platform</strong> - منصة تعليمية متخصصة في تصميم UI/UX</p>
+        </div>
+    </footer>
+
+    <script src="../js/auth.js"></script>
+    <script>
+        document.getElementById('login-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            if (auth.login(email, password)) {
+                const redirectUrl = localStorage.getItem('pixel_redirect_url') || '../index.html';
+                localStorage.removeItem('pixel_redirect_url');
+                window.location.href = redirectUrl;
+            }
+        });
+    </script>
+</body>
+</html>
