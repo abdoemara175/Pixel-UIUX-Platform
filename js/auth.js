@@ -38,7 +38,7 @@ const auth = {
         
         // Redirect to home page
         setTimeout(() => {
-            window.location.href = '/';
+            window.location.href = 'https://abdoemara175.github.io/Pixel-UIUX-Platform/index.html';
         }, 100);
     },
 
