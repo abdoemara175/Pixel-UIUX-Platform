@@ -75,7 +75,7 @@ const auth = {
 
             const signupItem = document.createElement('li');
             signupItem.className = 'auth-btn-item';
-            signupItem.innerHTML = `<a href="${prefix}signup.html" style="background: linear-gradient(135deg, var(--secondary), #6d28d9); color: white; padding: 0.6rem 1.5rem; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 0.9rem; display: inline-block; box-shadow: 0 10px 25px rgba(124, 58, 237, 0.1); transition: all 0.3s;">إنشاء حساب</a>`;
+            signupItem.innerHTML = `<a href="${prefix}signup.html" style="background: linear-gradient(135deg, var(--secondary), #6d28d9); color: white !important; padding: 0.6rem 1.5rem; border-radius: 12px; text-decoration: none !important; font-weight: 700; font-size: 0.9rem; display: inline-block; box-shadow: 0 10px 25px rgba(124, 58, 237, 0.1); transition: all 0.3s; cursor: pointer;">إنشاء حساب</a>`;
             navLinks.appendChild(signupItem);
         }
     }
