@@ -34,7 +34,12 @@ const auth = {
         localStorage.removeItem('pixel_user_logged_in');
         localStorage.removeItem('pixel_user_email');
         localStorage.removeItem('pixel_user_name');
-        window.location.href = window.location.origin + '/index.html';
+        localStorage.removeItem('pixel_redirect_url');
+        
+        // Redirect to home page
+        setTimeout(() => {
+            window.location.href = '/';
+        }, 100);
     },
 
     // Protect private pages
