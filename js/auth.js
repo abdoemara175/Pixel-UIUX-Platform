@@ -63,19 +63,19 @@ const auth = {
             // Show Logout
             const logoutItem = document.createElement('li');
             logoutItem.className = 'auth-btn-item';
-            logoutItem.innerHTML = `<a href="#" onclick="auth.logout()" class="btn btn-secondary" style="padding: 0.5rem 1rem; font-size: 0.9rem; border-width: 1px;">تسجيل الخروج</a>`;
+            logoutItem.innerHTML = `<a href="#" onclick="auth.logout()" style="color: var(--secondary); font-weight: 700; text-decoration: none; cursor: pointer;">تسجيل الخروج</a>`;
             navLinks.appendChild(logoutItem);
         } else {
             // Show Login & Signup
             const loginItem = document.createElement('li');
             loginItem.className = 'auth-btn-item';
             const prefix = window.location.pathname.includes('/pages/') ? '' : 'pages/';
-            loginItem.innerHTML = `<a href="${prefix}login.html" style="color: var(--secondary); font-weight: 700;">تسجيل الدخول</a>`;
+            loginItem.innerHTML = `<a href="${prefix}login.html" style="color: var(--secondary); font-weight: 700; text-decoration: none;">تسجيل الدخول</a>`;
             navLinks.appendChild(loginItem);
 
             const signupItem = document.createElement('li');
             signupItem.className = 'auth-btn-item';
-            signupItem.innerHTML = `<a href="${prefix}signup.html" class="btn btn-primary" style="padding: 0.5rem 1rem; font-size: 0.9rem;">إنشاء حساب</a>`;
+            signupItem.innerHTML = `<a href="${prefix}signup.html" style="background: linear-gradient(135deg, var(--secondary), #6d28d9); color: white; padding: 0.6rem 1.5rem; border-radius: 12px; text-decoration: none; font-weight: 700; font-size: 0.9rem; display: inline-block; box-shadow: 0 10px 25px rgba(124, 58, 237, 0.1); transition: all 0.3s;">إنشاء حساب</a>`;
             navLinks.appendChild(signupItem);
         }
     }
