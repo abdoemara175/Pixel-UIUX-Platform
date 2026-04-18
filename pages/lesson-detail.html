@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>درس - Pixel</title>
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         .lesson-layout {
             display: grid;
@@ -154,7 +155,7 @@
                     const li = document.createElement('li');
                     const a = document.createElement('a');
                     a.href = `lesson-detail.html?level=${levelKey}&lesson=${l.id}`;
-                    a.textContent = l.title;
+                    a.innerHTML = `<i class="fa-solid fa-book-bookmark" style="margin-left: 8px; font-size: 0.9rem; opacity: 0.7;"></i> ${l.title}`;
                     if (l.id === lessonId) a.className = 'active';
                     li.appendChild(a);
                     list.appendChild(li);

@@ -3,12 +3,35 @@ const pixelData = {
         beginner: {
             title: "مستوى المبتدئين",
             description: "ابدأ رحلتك في عالم تصميم الواجهات من الصفر وتعلم الأساسيات الجوهرية.",
-            icon: "🌱",
+            icon: '<i class="fa-solid fa-seedling"></i>',
             lessons: [
                 {
                     id: 1,
                     title: "مقدمة إلى UI/UX",
                     content: `
+                        <div class="lesson-stats" style="display: flex; gap: 2rem; margin-bottom: 2rem; background: #f8fafc; padding: 1.5rem; border-radius: 12px; border: 1px solid #e2e8f0;">
+                            <div style="display: flex; align-items: center; gap: 0.8rem;">
+                                <div style="width: 40px; height: 40px; background: white; border-radius: 8px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.05); color: #7c3aed; font-size: 1.2rem;"><i class="fa-solid fa-users"></i></div>
+                                <div>
+                                    <div style="font-weight: 800; font-size: 1.2rem; color: #1e293b;">55</div>
+                                    <div style="font-size: 0.75rem; color: #64748b; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Students</div>
+                                </div>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 0.8rem;">
+                                <div style="width: 40px; height: 40px; background: white; border-radius: 8px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.05); color: #7c3aed; font-size: 1.2rem;"><i class="fa-solid fa-book-open"></i></div>
+                                <div>
+                                    <div style="font-weight: 800; font-size: 1.2rem; color: #1e293b;">45</div>
+                                    <div style="font-size: 0.75rem; color: #64748b; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Topics</div>
+                                </div>
+                            </div>
+                            <div style="display: flex; align-items: center; gap: 0.8rem;">
+                                <div style="width: 40px; height: 40px; background: white; border-radius: 8px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.05); color: #7c3aed; font-size: 1.2rem;"><i class="fa-solid fa-bolt"></i></div>
+                                <div>
+                                    <div style="font-weight: 800; font-size: 1.2rem; color: #1e293b;">80%</div>
+                                    <div style="font-size: 0.75rem; color: #64748b; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Practical Content</div>
+                                </div>
+                            </div>
+                        </div>
                         <h3>ما هو تصميم واجهة المستخدم (UI)؟</h3>
                         <p>تصميم واجهة المستخدم هو الجانب البصري والجمالي للمنتج الرقمي. يشمل ذلك الألوان، الخطوط، الأزرار، والصور التي يتفاعل معها المستخدم مباشرة.</p>
                         <h3>ما هو تصميم تجربة المستخدم (UX)؟</h3>
@@ -77,7 +100,7 @@ const pixelData = {
         intermediate: {
             title: "مستوى المتوسط",
             description: "انتقل إلى المرحلة التالية وتعلم كيفية بناء هياكل المواقع والتطبيقات.",
-            icon: "📈",
+            icon: '<i class="fa-solid fa-arrow-trend-up"></i>',
             lessons: [
                 {
                     id: 1,
@@ -141,7 +164,7 @@ const pixelData = {
         advanced: {
             title: "مستوى متقدم",
             description: "أتقن المهارات الاحترافية وتعلم كيفية بناء أنظمة تصميم متكاملة.",
-            icon: "⭐",
+            icon: '<i class="fa-solid fa-star"></i>',
             lessons: [
                 {
                     id: 1,

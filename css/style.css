@@ -274,6 +274,11 @@ body {
 .objective-icon {
     font-size: 2.5rem;
     margin-bottom: 1rem;
+    color: var(--secondary);
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .objective-card h3 {
@@ -325,6 +330,11 @@ body {
 .feature-icon {
     font-size: 2.5rem;
     margin-bottom: 1rem;
+    color: var(--secondary);
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .feature-card h3 {
@@ -386,6 +396,11 @@ body {
 .level-icon {
     font-size: 3rem;
     margin-bottom: 1.5rem;
+    color: var(--secondary);
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .level-card h3 {
