@@ -9,26 +9,28 @@ const pixelData = {
                     id: 1,
                     title: "مقدمة إلى UI/UX",
                     content: `
-                        <div class="lesson-stats" style="display: flex; gap: 2rem; margin-bottom: 2rem; background: #f8fafc; padding: 1.5rem; border-radius: 12px; border: 1px solid #e2e8f0;">
-                            <div style="display: flex; align-items: center; gap: 0.8rem;">
-                                <div style="width: 40px; height: 40px; background: white; border-radius: 8px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.05); color: #7c3aed; font-size: 1.2rem;"><i class="fa-solid fa-users"></i></div>
+                        <div class="lesson-stats" style="display: flex; gap: 2rem; margin-bottom: 2rem; background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); padding: 2rem; border-radius: 20px; border: 1px solid rgba(255, 255, 255, 0.3); box-shadow: 0 8px 32px rgba(124, 58, 237, 0.1), inset 0 1px 1px rgba(255, 255, 255, 0.5);">
+                            <div style="display: flex; align-items: center; gap: 1rem; flex: 1;">
+                                <div style="width: 50px; height: 50px; background: linear-gradient(135deg, rgba(124, 58, 237, 0.1) 0%, rgba(167, 139, 250, 0.05) 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(124, 58, 237, 0.15), inset 0 1px 2px rgba(255, 255, 255, 0.3); color: #7c3aed; font-size: 1.4rem; border: 1px solid rgba(124, 58, 237, 0.2);"><i class="fa-solid fa-users"></i></div>
                                 <div>
-                                    <div style="font-weight: 800; font-size: 1.2rem; color: #1e293b;">55</div>
-                                    <div style="font-size: 0.75rem; color: #64748b; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Students</div>
+                                    <div style="font-weight: 900; font-size: 1.5rem; color: #1e293b; line-height: 1;">55</div>
+                                    <div style="font-size: 0.7rem; color: #64748b; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; margin-top: 0.3rem;">STUDENTS</div>
                                 </div>
                             </div>
-                            <div style="display: flex; align-items: center; gap: 0.8rem;">
-                                <div style="width: 40px; height: 40px; background: white; border-radius: 8px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.05); color: #7c3aed; font-size: 1.2rem;"><i class="fa-solid fa-book-open"></i></div>
+                            <div style="width: 1px; background: linear-gradient(180deg, transparent 0%, rgba(124, 58, 237, 0.2) 50%, transparent 100%); height: 60px;"></div>
+                            <div style="display: flex; align-items: center; gap: 1rem; flex: 1;">
+                                <div style="width: 50px; height: 50px; background: linear-gradient(135deg, rgba(124, 58, 237, 0.1) 0%, rgba(167, 139, 250, 0.05) 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(124, 58, 237, 0.15), inset 0 1px 2px rgba(255, 255, 255, 0.3); color: #7c3aed; font-size: 1.4rem; border: 1px solid rgba(124, 58, 237, 0.2);"><i class="fa-solid fa-book-open"></i></div>
                                 <div>
-                                    <div style="font-weight: 800; font-size: 1.2rem; color: #1e293b;">45</div>
-                                    <div style="font-size: 0.75rem; color: #64748b; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Topics</div>
+                                    <div style="font-weight: 900; font-size: 1.5rem; color: #1e293b; line-height: 1;">45</div>
+                                    <div style="font-size: 0.7rem; color: #64748b; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; margin-top: 0.3rem;">TOPICS</div>
                                 </div>
                             </div>
-                            <div style="display: flex; align-items: center; gap: 0.8rem;">
-                                <div style="width: 40px; height: 40px; background: white; border-radius: 8px; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 4px rgba(0,0,0,0.05); color: #7c3aed; font-size: 1.2rem;"><i class="fa-solid fa-bolt"></i></div>
+                            <div style="width: 1px; background: linear-gradient(180deg, transparent 0%, rgba(124, 58, 237, 0.2) 50%, transparent 100%); height: 60px;"></div>
+                            <div style="display: flex; align-items: center; gap: 1rem; flex: 1;">
+                                <div style="width: 50px; height: 50px; background: linear-gradient(135deg, rgba(124, 58, 237, 0.1) 0%, rgba(167, 139, 250, 0.05) 100%); border-radius: 12px; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 15px rgba(124, 58, 237, 0.15), inset 0 1px 2px rgba(255, 255, 255, 0.3); color: #7c3aed; font-size: 1.4rem; border: 1px solid rgba(124, 58, 237, 0.2);"><i class="fa-solid fa-bolt"></i></div>
                                 <div>
-                                    <div style="font-weight: 800; font-size: 1.2rem; color: #1e293b;">80%</div>
-                                    <div style="font-size: 0.75rem; color: #64748b; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px;">Practical Content</div>
+                                    <div style="font-weight: 900; font-size: 1.5rem; color: #1e293b; line-height: 1;">80%</div>
+                                    <div style="font-size: 0.7rem; color: #64748b; font-weight: 700; text-transform: uppercase; letter-spacing: 0.6px; margin-top: 0.3rem;">PRACTICAL CONTENT</div>
                                 </div>
                             </div>
                         </div>
