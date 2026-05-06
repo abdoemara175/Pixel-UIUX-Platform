@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اختبار تحديد المستوى - Pixel</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="../index.html" class="logo">
+            <span>Pixel</span><span>.</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="../index.html">الرئيسية</a></li>
+            <li><a href="../index.html#levels">المسارات</a></li>
+            <li><a href="../index.html#features">المميزات</a></li>
+        </ul>
+    </nav>
+
+    <!-- Quiz Container -->
+    <div class="container">
+        <div class="quiz-container">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress"></div>
+            </div>
+
+            <div class="question" id="question-container">
+                <h3 id="question-text"></h3>
+                <div class="options" id="options-container"></div>
+            </div>
+
+            <div style="text-align: center; margin-top: 2rem;">
+                <button class="btn btn-primary" id="next-btn" onclick="nextQuestion()" style="display: none;">السؤال التالي</button>
+                <button class="btn btn-primary" id="submit-btn" onclick="submitTest()" style="display: none;">إنهاء الاختبار</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p><strong>Pixel Platform</strong> - منصة تعليمية متخصصة في تصميم UI/UX</p>
+        </div>
+    </footer>
+
+    <script src="../js/data.js"></script>
+    <script src="../js/auth.js"></script>
+    <script>
+        // Protect this page
+        auth.protectPage();
+
+        const questions = pixelData.placementTest;
+        let currentQuestion = 0;
+        let score = 0;
+        let selectedAnswers = [];
+
+        function loadQuestion() {
+            const question = questions[currentQuestion];
+            document.getElementById("question-text").textContent = question.question;
+            
+            const optionsContainer = document.getElementById("options-container");
+            optionsContainer.innerHTML = "";
+            
+            question.options.forEach((option, index) => {
+                const optionDiv = document.createElement("div");
+                optionDiv.className = "option";
+                if (selectedAnswers[currentQuestion] === index) optionDiv.classList.add("selected");
+                optionDiv.textContent = option;
+                optionDiv.onclick = () => selectOption(index, optionDiv);
+                optionsContainer.appendChild(optionDiv);
+            });
+
+            updateProgress();
+            updateButtons();
+        }
+
+        function selectOption(index, element) {
+            document.querySelectorAll(".option").forEach(opt => opt.classList.remove("selected"));
+            element.classList.add("selected");
+            selectedAnswers[currentQuestion] = index;
+        }
+
+        function updateProgress() {
+            const progress = ((currentQuestion + 1) / questions.length) * 100;
+            document.getElementById("progress").style.width = progress + "%";
+        }
+
+        function updateButtons() {
+            const nextBtn = document.getElementById("next-btn");
+            const submitBtn = document.getElementById("submit-btn");
+            
+            if (currentQuestion < questions.length - 1) {
+                nextBtn.style.display = "inline-block";
+                submitBtn.style.display = "none";
+            } else {
+                nextBtn.style.display = "none";
+                submitBtn.style.display = "inline-block";
+            }
+        }
+
+        function nextQuestion() {
+            if (selectedAnswers[currentQuestion] !== undefined) {
+                currentQuestion++;
+                loadQuestion();
+            } else {
+                alert("يرجى اختيار إجابة");
+            }
+        }
+
+        function submitTest() {
+            if (selectedAnswers[currentQuestion] === undefined) {
+                alert("يرجى اختيار إجابة");
+                return;
+            }
+
+            score = 0;
+            questions.forEach((question, index) => {
+                if (selectedAnswers[index] === question.correct) {
+                    score++;
+                }
+            });
+
+            let level = "beginner";
+            let levelName = "مبتدئ";
+            if (score >= 4) {
+                level = "advanced";
+                levelName = "متقدم";
+            } else if (score >= 3) {
+                level = "intermediate";
+                levelName = "متوسط";
+            }
+
+            alert(`نتيجتك: ${score}/${questions.length}\nمستواك المقترح: ${levelName}`);
+            window.location.href = `levels.html?level=${level}`;
+        }
+
+        window.onload = loadQuestion;
+    </script>
+</body>
+</html>

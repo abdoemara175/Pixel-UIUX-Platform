@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>المسارات التعليمية - Pixel</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="../index.html" class="logo">
+            <span>Pixel</span><span>.</span>
+        </a>
+        <ul class="nav-links">
+            <li><a href="../index.html">الرئيسية</a></li>
+            <li><a href="../index.html#levels">المسارات</a></li>
+            <li><a href="placement-test.html">تحديد المستوى</a></li>
+            <li><a href="../index.html#features">المميزات</a></li>
+        </ul>
+    </nav>
+
+    <!-- Content -->
+    <div class="container" style="padding: 3rem 5%;">
+        <div id="level-header" style="margin-bottom: 3rem;">
+            <h1 id="level-title">المسارات التعليمية</h1>
+            <p id="level-desc" style="color: #64748b; font-size: 1.1rem; margin-top: 0.5rem;">اختر المسار الذي يناسبك وابدأ رحلتك التعليمية</p>
+        </div>
+        
+        <div id="content-grid" class="levels-grid">
+            <!-- Content will be loaded here -->
+        </div>
+
+        <div id="back-to-levels" style="margin-top: 3rem; display: none;">
+            <a href="levels.html" class="btn btn-secondary">العودة لجميع المسارات</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p><strong>Pixel Platform</strong> - منصة تعليمية متخصصة في تصميم UI/UX</p>
+        </div>
+    </footer>
+
+    <script src="../js/data.js"></script>
+    <script src="../js/auth.js"></script>
+    <script>
+        // Protect this page
+        auth.protectPage();
+
+        function loadContent() {
+            const params = new URLSearchParams(window.location.search);
+            let levelKey = params.get('level');
+            
+            // Handle Arabic level names from placement test
+            if (levelKey === 'مبتدئ') levelKey = 'beginner';
+            if (levelKey === 'متوسط') levelKey = 'intermediate';
+            if (levelKey === 'متقدم') levelKey = 'advanced';
+
+            const grid = document.getElementById('content-grid');
+            const title = document.getElementById('level-title');
+            const desc = document.getElementById('level-desc');
+            const backBtn = document.getElementById('back-to-levels');
+
+            if (levelKey && pixelData.levels[levelKey]) {
+                const level = pixelData.levels[levelKey];
+                title.textContent = level.title;
+                desc.textContent = level.description;
+                backBtn.style.display = 'block';
+                
+                grid.innerHTML = '';
+                level.lessons.forEach((lesson, index) => {
+                    const card = document.createElement('div');
+                    card.className = 'level-card';
+                    card.innerHTML = `
+                        <div class="level-icon">${index + 1}</div>
+                        <h3>${lesson.title}</h3>
+                        <p>اضغط للبدء في تعلم هذا الدرس واكتشاف محتواه.</p>
+                        <a href="lesson-detail.html?level=${levelKey}&lesson=${lesson.id}" class="btn btn-primary">ابدأ الدرس</a>
+                    `;
+                    grid.appendChild(card);
+                });
+            } else {
+                // Show all levels
+                grid.innerHTML = '';
+                Object.keys(pixelData.levels).forEach(key => {
+                    const level = pixelData.levels[key];
+                    const card = document.createElement('div');
+                    card.className = 'level-card';
+                    card.innerHTML = `
+                        <div class="level-icon">${level.icon}</div>
+                        <h3>${level.title}</h3>
+                        <p>${level.description}</p>
+                        <a href="levels.html?level=${key}" class="btn btn-primary">استكشف الدروس</a>
+                    `;
+                    grid.appendChild(card);
+                });
+            }
+        }
+
+        window.onload = loadContent;
+    </script>
+</body>
+</html>
